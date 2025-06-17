@@ -1,4 +1,36 @@
-<!DOCTYPE html>
+            newRow.innerHTML = `
+                <td>
+                    <div class="service-name-container">
+                        <div class="service-name" onclick="openTaskDetail('${serviceName}', '${serviceDescription}', '${category}', '${dueDate.value}', '${assignedTo.value}', '${taskNotes.value}', '${taskStatus.value}')">${serviceName}</div>
+                        <button class="remove-btn" onclick="removeTask(this)">Delete</button>
+                    </div>
+                </td>
+                <td>
+                    <div class="service-description">${serviceDescription}</div>
+                </td>
+                <td>
+                    <div class="category">${category}</div>
+                </td>
+                <td>
+                    <input type="date" class="date-field" value="${dueDate.value}">
+                </td>
+                <td>
+                    <select class="select-field">
+                        <option ${assignedTo.value === 'Chandler Bing' ? 'selected' : ''}>Chandler Bing</option>
+                        <option ${assignedTo.value === 'Monica Geller' ? 'selected' : ''}>Monica Geller</option>
+                        <option ${assignedTo.value === 'Ross Geller' ? 'selected' : ''}>Ross Geller</option>
+                        <option ${assignedTo.value === 'Rachel Green' ? 'selected' : ''}>Rachel Green</option>
+                        <option ${assignedTo.value === 'Joey Tribbiani' ? 'selected' : ''}>Joey Tribbiani</option>
+                        <option ${assignedTo.value === 'Phoebe Buffay' ? 'selected' : ''}>Phoebe Buffay</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="select-field" style="width: 100px; font-size: 0.75rem;">
+                        <option value="not-completed" ${taskStatus.value === 'not-completed' ? 'selected' : ''}>Not Completed</option>
+                        <option value="completed" ${taskStatus.value === 'completed' ? 'selected' : ''}>Completed</option>
+                    </select>
+                </td>
+            `;<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -110,8 +142,14 @@
 
         .service-name {
             font-weight: 600;
-            color: #181818;
+            color: #0176D3;
             font-size: 0.875rem;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .service-name:hover {
+            color: #014486;
         }
 
         .service-description {
@@ -196,13 +234,12 @@
             cursor: pointer;
         }
 
-        .col-service { width: 18%; }
-        .col-description { width: 22%; }
-        .col-category { width: 8%; }
-        .col-date { width: 10%; }
-        .col-assigned { width: 12%; }
-        .col-notes { width: 26%; }
-        .col-status { width: 8%; }
+        .col-service { width: 22%; }
+        .col-description { width: 28%; }
+        .col-category { width: 10%; }
+        .col-date { width: 12%; }
+        .col-assigned { width: 16%; }
+        .col-status { width: 12%; }
 
         /* Tabs Styling */
         .tabs-container {
@@ -455,7 +492,109 @@
             color: #181818;
         }
 
-        /* Remove button for user-added tasks */
+        /* Task Detail Modal */
+        .task-detail-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .task-detail-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            width: 600px;
+            max-width: 90vw;
+            z-index: 1001;
+        }
+
+        .task-detail-modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e5e5;
+            background: #f8f9fa;
+            border-radius: 8px 8px 0 0;
+            position: relative;
+        }
+
+        .task-detail-modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #181818;
+            margin: 0;
+        }
+
+        .task-detail-modal-subtitle {
+            font-size: 0.875rem;
+            color: #706E6B;
+            margin: 0.5rem 0 0 0;
+        }
+
+        .task-detail-modal-body {
+            padding: 1.5rem;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .detail-field {
+            margin-bottom: 1rem;
+        }
+
+        .detail-field.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .detail-label {
+            display: block;
+            font-weight: 600;
+            color: #3E3E3C;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-input, .detail-select, .detail-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #D8D8D8;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            background: white;
+        }
+
+        .detail-input:focus, .detail-select:focus, .detail-textarea:focus {
+            outline: none;
+            border-color: #0176D3;
+            box-shadow: 0 0 0 2px rgba(1, 118, 211, 0.1);
+        }
+
+        .detail-textarea {
+            min-height: 100px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .task-detail-modal-actions {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e5e5e5;
+            background: #f8f9fa;
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+            border-radius: 0 0 8px 8px;
+        }
         .remove-btn {
             background: #dc2626;
             color: white;
@@ -505,14 +644,13 @@
                                 <th class="col-category">Category</th>
                                 <th class="col-date">Due Date</th>
                                 <th class="col-assigned">Assigned To</th>
-                                <th class="col-notes">Notes</th>
                                 <th class="col-status">Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="task-row">
                                 <td>
-                                    <div class="service-name">Performance Reviews</div>
+                                    <div class="service-name" onclick="openTaskDetail('Performance Reviews', 'Monthly analysis of campaign performance and optimization recommendations', 'Optimization', '2025-06-15', 'Chandler Bing', 'Pending client feedback on Q1 performance metrics', 'not-completed')">Performance Reviews</div>
                                 </td>
                                 <td>
                                     <div class="service-description">Monthly analysis of campaign performance and optimization recommendations</div>
@@ -534,9 +672,6 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <textarea class="textarea-field" placeholder="Add notes...">Pending client feedback on Q1 performance metrics</textarea>
-                                </td>
-                                <td>
                                     <select class="select-field" style="width: 100px; font-size: 0.75rem;">
                                         <option value="not-completed">Not Completed</option>
                                         <option value="completed">Completed</option>
@@ -546,7 +681,7 @@
                             
                             <tr class="task-row">
                                 <td>
-                                    <div class="service-name">Publisher Recommendations</div>
+                                    <div class="service-name" onclick="openTaskDetail('Publisher Recommendations', 'Monthly publisher outreach and partnership recommendations', 'Publisher Management', '2025-06-20', 'Chandler Bing', 'Research in progress for new tech publishers', 'not-completed')">Publisher Recommendations</div>
                                 </td>
                                 <td>
                                     <div class="service-description">Monthly publisher outreach and partnership recommendations</div>
@@ -568,9 +703,6 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <textarea class="textarea-field" placeholder="Add notes...">Research in progress for new tech publishers</textarea>
-                                </td>
-                                <td>
                                     <select class="select-field" style="width: 100px; font-size: 0.75rem;">
                                         <option value="not-completed">Not Completed</option>
                                         <option value="completed">Completed</option>
@@ -580,7 +712,7 @@
                             
                             <tr class="task-row">
                                 <td>
-                                    <div class="service-name">Monthly Check-ins</div>
+                                    <div class="service-name" onclick="openTaskDetail('Monthly Check-ins', 'Regular client calls to discuss performance and strategy', 'Communication', '2025-06-10', 'Chandler Bing', 'Call went well, client satisfied with current performance', 'completed')">Monthly Check-ins</div>
                                 </td>
                                 <td>
                                     <div class="service-description">Regular client calls to discuss performance and strategy</div>
@@ -602,9 +734,6 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <textarea class="textarea-field" placeholder="Add notes...">Call went well, client satisfied with current performance</textarea>
-                                </td>
-                                <td>
                                     <select class="select-field" style="width: 100px; font-size: 0.75rem;">
                                         <option value="not-completed">Not Completed</option>
                                         <option value="completed" selected>Completed</option>
@@ -614,7 +743,7 @@
                             
                             <tr class="task-row">
                                 <td>
-                                    <div class="service-name">Account Maintenance</div>
+                                    <div class="service-name" onclick="openTaskDetail('Account Maintenance', 'Regular account cleanup and maintenance tasks', 'Housekeeping', '2025-06-25', 'Chandler Bing', 'Scheduled for next week - cleanup inactive publishers', 'not-completed')">Account Maintenance</div>
                                 </td>
                                 <td>
                                     <div class="service-description">Regular account cleanup and maintenance tasks</div>
@@ -636,9 +765,6 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <textarea class="textarea-field" placeholder="Add notes...">Scheduled for next week - cleanup inactive publishers</textarea>
-                                </td>
-                                <td>
                                     <select class="select-field" style="width: 100px; font-size: 0.75rem;">
                                         <option value="not-completed">Not Completed</option>
                                         <option value="completed">Completed</option>
@@ -648,7 +774,7 @@
                             
                             <tr class="task-row">
                                 <td>
-                                    <div class="service-name">Custom: Social Media Audit</div>
+                                    <div class="service-name" onclick="openTaskDetail('Custom: Social Media Audit', 'Quarterly review of social media performance and recommendations', 'Other', '2025-06-18', 'Chandler Bing', 'Awaiting social media access from client', 'not-completed')">Custom: Social Media Audit</div>
                                 </td>
                                 <td>
                                     <div class="service-description">Quarterly review of social media performance and recommendations</div>
@@ -670,9 +796,6 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <textarea class="textarea-field" placeholder="Add notes...">Awaiting social media access from client</textarea>
-                                </td>
-                                <td>
                                     <select class="select-field" style="width: 100px; font-size: 0.75rem;">
                                         <option value="not-completed">Not Completed</option>
                                         <option value="completed">Completed</option>
@@ -683,7 +806,7 @@
                             <tr class="task-row">
                                 <td>
                                     <div class="service-name-container">
-                                        <div class="service-name">Other Tasks</div>
+                                        <div class="service-name" onclick="openTaskDetail('Other Tasks', 'Ad-hoc tasks and client requests not covered by standard services', 'Other', '2025-06-20', 'Chandler Bing', 'No current tasks - ready for ad-hoc requests', 'not-completed')">Other Tasks</div>
                                         <button class="remove-btn" onclick="removeTask(this)" style="display: none;">Delete</button>
                                     </div>
                                 </td>
@@ -705,9 +828,6 @@
                                         <option>Joey Tribbiani</option>
                                         <option>Phoebe Buffay</option>
                                     </select>
-                                </td>
-                                <td>
-                                    <textarea class="textarea-field" placeholder="Add notes...">No current tasks - ready for ad-hoc requests</textarea>
                                 </td>
                                 <td>
                                     <select class="select-field" style="width: 100px; font-size: 0.75rem;">
@@ -864,6 +984,63 @@
         </div>
     </div>
 
+    <!-- Task Detail Modal -->
+    <div id="taskDetailModal" class="task-detail-modal-overlay">
+        <div class="task-detail-modal">
+            <div class="task-detail-modal-header">
+                <h2 class="task-detail-modal-title" id="taskDetailTitle">Task Details</h2>
+                <p class="task-detail-modal-subtitle" id="taskDetailSubtitle">View and edit task information</p>
+                <button class="close-btn" id="closeTaskDetailBtn">&times;</button>
+            </div>
+            <div class="task-detail-modal-body">
+                <div class="detail-grid">
+                    <div class="detail-field">
+                        <label for="detailServiceName" class="detail-label">Service Name</label>
+                        <input type="text" id="detailServiceName" class="detail-input" readonly>
+                    </div>
+                    <div class="detail-field">
+                        <label for="detailCategory" class="detail-label">Category</label>
+                        <input type="text" id="detailCategory" class="detail-input" readonly>
+                    </div>
+                    <div class="detail-field">
+                        <label for="detailDueDate" class="detail-label">Due Date</label>
+                        <input type="date" id="detailDueDate" class="detail-input">
+                    </div>
+                    <div class="detail-field">
+                        <label for="detailAssignedTo" class="detail-label">Assigned To</label>
+                        <select id="detailAssignedTo" class="detail-select">
+                            <option>Chandler Bing</option>
+                            <option>Monica Geller</option>
+                            <option>Ross Geller</option>
+                            <option>Rachel Green</option>
+                            <option>Joey Tribbiani</option>
+                            <option>Phoebe Buffay</option>
+                        </select>
+                    </div>
+                    <div class="detail-field">
+                        <label for="detailStatus" class="detail-label">Status</label>
+                        <select id="detailStatus" class="detail-select">
+                            <option value="not-completed">Not Completed</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="detail-field full-width">
+                    <label for="detailDescription" class="detail-label">Description</label>
+                    <textarea id="detailDescription" class="detail-textarea" readonly></textarea>
+                </div>
+                <div class="detail-field full-width">
+                    <label for="detailNotes" class="detail-label">Notes</label>
+                    <textarea id="detailNotes" class="detail-textarea" placeholder="Add your notes and comments here..."></textarea>
+                </div>
+            </div>
+            <div class="task-detail-modal-actions">
+                <button class="btn btn-secondary" id="cancelTaskDetailBtn">Cancel</button>
+                <button class="btn btn-primary" id="saveTaskDetailBtn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Get elements
         const addTaskBtn = document.getElementById('addTaskBtn');
@@ -873,6 +1050,52 @@
         const addBtn = document.getElementById('addBtn');
         const serviceSelect = document.getElementById('serviceSelect');
         const otherTaskFields = document.getElementById('otherTaskFields');
+
+        // Task Detail Modal elements
+        const taskDetailModal = document.getElementById('taskDetailModal');
+        const closeTaskDetailBtn = document.getElementById('closeTaskDetailBtn');
+        const cancelTaskDetailBtn = document.getElementById('cancelTaskDetailBtn');
+        const saveTaskDetailBtn = document.getElementById('saveTaskDetailBtn');
+
+        // Function to open task detail modal
+        function openTaskDetail(serviceName, description, category, dueDate, assignedTo, notes, status) {
+            document.getElementById('taskDetailTitle').textContent = serviceName;
+            document.getElementById('detailServiceName').value = serviceName;
+            document.getElementById('detailDescription').value = description;
+            document.getElementById('detailCategory').value = category;
+            document.getElementById('detailDueDate').value = dueDate;
+            document.getElementById('detailAssignedTo').value = assignedTo;
+            document.getElementById('detailNotes').value = notes;
+            document.getElementById('detailStatus').value = status;
+            
+            taskDetailModal.style.display = 'block';
+        }
+
+        // Function to close task detail modal
+        function closeTaskDetailModal() {
+            taskDetailModal.style.display = 'none';
+        }
+
+        // Task detail modal event listeners
+        closeTaskDetailBtn.addEventListener('click', closeTaskDetailModal);
+        cancelTaskDetailBtn.addEventListener('click', closeTaskDetailModal);
+
+        // Close modal when clicking outside
+        taskDetailModal.addEventListener('click', function(e) {
+            if (e.target === taskDetailModal) {
+                closeTaskDetailModal();
+            }
+        });
+
+        // Save task details
+        saveTaskDetailBtn.addEventListener('click', function() {
+            // Here you would save the changes back to the table
+            alert('Task details saved successfully!');
+            closeTaskDetailModal();
+        });
+
+        // Make functions globally available
+        window.openTaskDetail = openTaskDetail;
 
         // Show/hide additional fields based on service selection
         serviceSelect.addEventListener('change', function() {
@@ -1005,9 +1228,6 @@
                         <option ${assignedTo.value === 'Joey Tribbiani' ? 'selected' : ''}>Joey Tribbiani</option>
                         <option ${assignedTo.value === 'Phoebe Buffay' ? 'selected' : ''}>Phoebe Buffay</option>
                     </select>
-                </td>
-                <td>
-                    <textarea class="textarea-field" placeholder="Add notes...">${taskNotes.value}</textarea>
                 </td>
                 <td>
                     <select class="select-field" style="width: 100px; font-size: 0.75rem;">
