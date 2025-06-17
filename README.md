@@ -1,36 +1,4 @@
-newRow.innerHTML = `
-                <td>
-                    <div class="service-name-container">
-                        <div class="service-name" onclick="openTaskDetail('${serviceName}', '${serviceDescription}', '${category}', '${dueDate.value}', '${assignedTo.value}', '${taskNotes.value}', '${taskStatus.value}')">${serviceName}</div>
-                        <button class="remove-btn" onclick="removeTask(this)">Delete</button>
-                    </div>
-                </td>
-                <td>
-                    <div class="service-description">${serviceDescription}</div>
-                </td>
-                <td>
-                    <div class="category">${category}</div>
-                </td>
-                <td>
-                    <input type="date" class="date-field" value="${dueDate.value}">
-                </td>
-                <td>
-                    <select class="select-field">
-                        <option ${assignedTo.value === 'Chandler Bing' ? 'selected' : ''}>Chandler Bing</option>
-                        <option ${assignedTo.value === 'Monica Geller' ? 'selected' : ''}>Monica Geller</option>
-                        <option ${assignedTo.value === 'Ross Geller' ? 'selected' : ''}>Ross Geller</option>
-                        <option ${assignedTo.value === 'Rachel Green' ? 'selected' : ''}>Rachel Green</option>
-                        <option ${assignedTo.value === 'Joey Tribbiani' ? 'selected' : ''}>Joey Tribbiani</option>
-                        <option ${assignedTo.value === 'Phoebe Buffay' ? 'selected' : ''}>Phoebe Buffay</option>
-                    </select>
-                </td>
-                <td>
-                    <select class="select-field" style="width: 100px; font-size: 0.75rem;">
-                        <option value="not-completed" ${taskStatus.value === 'not-completed' ? 'selected' : ''}>Not Completed</option>
-                        <option value="completed" ${taskStatus.value === 'completed' ? 'selected' : ''}>Completed</option>
-                    </select>
-                </td>
-            `;<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -82,8 +50,6 @@ newRow.innerHTML = `
         }
 
         .container {
-            max-width: 1400px;
-            margin: 0 auto;
             background: white;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -164,16 +130,6 @@ newRow.innerHTML = `
             color: #181818;
         }
 
-        .input-field {
-            background: white;
-            border: 1px solid #D8D8D8;
-            border-radius: 4px;
-            padding: 0.5rem;
-            font-size: 0.875rem;
-            width: 100%;
-            font-family: inherit;
-        }
-
         .date-field {
             background: white;
             border: 1px solid #D8D8D8;
@@ -182,12 +138,6 @@ newRow.innerHTML = `
             font-size: 0.875rem;
             font-family: inherit;
             width: 130px;
-        }
-
-        .input-field:focus {
-            outline: none;
-            border-color: #0176D3;
-            box-shadow: 0 0 0 2px rgba(1, 118, 211, 0.1);
         }
 
         .select-field {
@@ -200,38 +150,9 @@ newRow.innerHTML = `
             cursor: pointer;
         }
 
-        .select-field:focus {
+        .select-field:focus, .date-field:focus {
             outline: none;
             border-color: #0176D3;
-        }
-
-        .textarea-field {
-            background: white;
-            border: 1px solid #D8D8D8;
-            border-radius: 4px;
-            padding: 0.5rem;
-            font-size: 0.875rem;
-            font-family: inherit;
-            resize: vertical;
-            min-height: 60px;
-            width: 100%;
-        }
-
-        .textarea-field:focus {
-            outline: none;
-            border-color: #0176D3;
-        }
-
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .checkbox {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
         }
 
         .col-service { width: 22%; }
@@ -338,7 +259,7 @@ newRow.innerHTML = `
         .contact-detail-label {
             color: #706E6B;
             display: inline-block;
-            width: 60px;
+            width: 100px;
         }
 
         .contact-detail-value {
@@ -409,7 +330,7 @@ newRow.innerHTML = `
             background: white;
             border-radius: 8px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-            width: 500px;
+            width: 600px;
             max-width: 90vw;
             z-index: 1001;
         }
@@ -427,6 +348,12 @@ newRow.innerHTML = `
             font-weight: 600;
             color: #181818;
             margin: 0;
+        }
+
+        .modal-subtitle {
+            font-size: 0.875rem;
+            color: #706E6B;
+            margin: 0.5rem 0 0 0;
         }
 
         .modal-body {
@@ -492,56 +419,7 @@ newRow.innerHTML = `
             color: #181818;
         }
 
-        /* Task Detail Modal */
-        .task-detail-modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-        }
-
-        .task-detail-modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-            width: 600px;
-            max-width: 90vw;
-            z-index: 1001;
-        }
-
-        .task-detail-modal-header {
-            padding: 1.5rem;
-            border-bottom: 1px solid #e5e5e5;
-            background: #f8f9fa;
-            border-radius: 8px 8px 0 0;
-            position: relative;
-        }
-
-        .task-detail-modal-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #181818;
-            margin: 0;
-        }
-
-        .task-detail-modal-subtitle {
-            font-size: 0.875rem;
-            color: #706E6B;
-            margin: 0.5rem 0 0 0;
-        }
-
-        .task-detail-modal-body {
-            padding: 1.5rem;
-        }
-
+        /* Task Detail Modal Styles */
         .detail-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -586,15 +464,7 @@ newRow.innerHTML = `
             font-family: inherit;
         }
 
-        .task-detail-modal-actions {
-            padding: 1rem 1.5rem;
-            border-top: 1px solid #e5e5e5;
-            background: #f8f9fa;
-            display: flex;
-            justify-content: flex-end;
-            gap: 0.75rem;
-            border-radius: 0 0 8px 8px;
-        }
+        /* Remove button for user-added tasks */
         .remove-btn {
             background: #dc2626;
             color: white;
@@ -912,6 +782,55 @@ newRow.innerHTML = `
         </div>
     </div>
 
+    <!-- Task Detail Modal -->
+    <div id="taskDetailModal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="taskDetailTitle">Task Details</h2>
+                <button class="close-btn" id="closeTaskDetailBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="detail-grid">
+                    <div class="detail-field">
+                        <label class="detail-label">Service Name</label>
+                        <input type="text" id="taskDetailName" class="detail-input" readonly>
+                    </div>
+                    <div class="detail-field">
+                        <label class="detail-label">Category</label>
+                        <input type="text" id="taskDetailCategory" class="detail-input" readonly>
+                    </div>
+                    <div class="detail-field full-width">
+                        <label class="detail-label">Description</label>
+                        <textarea id="taskDetailDescription" class="detail-textarea" readonly></textarea>
+                    </div>
+                    <div class="detail-field">
+                        <label class="detail-label">Due Date</label>
+                        <input type="date" id="taskDetailDueDate" class="detail-input">
+                    </div>
+                    <div class="detail-field">
+                        <label class="detail-label">Assigned To</label>
+                        <select id="taskDetailAssigned" class="detail-select">
+                            <option>Chandler Bing</option>
+                            <option>Monica Geller</option>
+                            <option>Ross Geller</option>
+                            <option>Rachel Green</option>
+                            <option>Joey Tribbiani</option>
+                            <option>Phoebe Buffay</option>
+                        </select>
+                    </div>
+                    <div class="detail-field full-width">
+                        <label class="detail-label">Notes</label>
+                        <textarea id="taskDetailNotes" class="detail-textarea" placeholder="Add notes, comments, or updates about this task..."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="cancelTaskDetailBtn">Cancel</button>
+                <button class="btn btn-primary" id="saveTaskDetailBtn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Add Task Modal -->
     <div id="addTaskModal" class="modal-overlay">
         <div class="modal">
@@ -968,314 +887,166 @@ newRow.innerHTML = `
                     <label for="taskNotes" class="form-label">Notes</label>
                     <textarea id="taskNotes" class="form-select" rows="3" placeholder="Add any notes, comments, or additional context for this task..."></textarea>
                 </div>
-                
-                <div class="form-group">
-                    <label for="taskStatus" class="form-label">Status</label>
-                    <select id="taskStatus" class="form-select">
-                        <option value="not-completed">Not Completed</option>
-                        <option value="completed">Completed</option>
-                    </select>
-                </div>
             </div>
             <div class="modal-actions">
-                <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
-                <button class="btn btn-primary" id="addBtn">Add Task</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Task Detail Modal -->
-    <div id="taskDetailModal" class="task-detail-modal-overlay">
-        <div class="task-detail-modal">
-            <div class="task-detail-modal-header">
-                <h2 class="task-detail-modal-title" id="taskDetailTitle">Task Details</h2>
-                <p class="task-detail-modal-subtitle" id="taskDetailSubtitle">View and edit task information</p>
-                <button class="close-btn" id="closeTaskDetailBtn">&times;</button>
-            </div>
-            <div class="task-detail-modal-body">
-                <div class="detail-grid">
-                    <div class="detail-field">
-                        <label for="detailServiceName" class="detail-label">Service Name</label>
-                        <input type="text" id="detailServiceName" class="detail-input" readonly>
-                    </div>
-                    <div class="detail-field">
-                        <label for="detailCategory" class="detail-label">Category</label>
-                        <input type="text" id="detailCategory" class="detail-input" readonly>
-                    </div>
-                    <div class="detail-field">
-                        <label for="detailDueDate" class="detail-label">Due Date</label>
-                        <input type="date" id="detailDueDate" class="detail-input">
-                    </div>
-                    <div class="detail-field">
-                        <label for="detailAssignedTo" class="detail-label">Assigned To</label>
-                        <select id="detailAssignedTo" class="detail-select">
-                            <option>Chandler Bing</option>
-                            <option>Monica Geller</option>
-                            <option>Ross Geller</option>
-                            <option>Rachel Green</option>
-                            <option>Joey Tribbiani</option>
-                            <option>Phoebe Buffay</option>
-                        </select>
-                    </div>
-                    <div class="detail-field">
-                        <label for="detailStatus" class="detail-label">Status</label>
-                        <select id="detailStatus" class="detail-select">
-                            <option value="not-completed">Not Completed</option>
-                            <option value="completed">Completed</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="detail-field full-width">
-                    <label for="detailDescription" class="detail-label">Description</label>
-                    <textarea id="detailDescription" class="detail-textarea" readonly></textarea>
-                </div>
-                <div class="detail-field full-width">
-                    <label for="detailNotes" class="detail-label">Notes</label>
-                    <textarea id="detailNotes" class="detail-textarea" placeholder="Add your notes and comments here..."></textarea>
-                </div>
-            </div>
-            <div class="task-detail-modal-actions">
-                <button class="btn btn-secondary" id="cancelTaskDetailBtn">Cancel</button>
-                <button class="btn btn-primary" id="saveTaskDetailBtn">Save Changes</button>
+                <button class="btn btn-secondary" id="cancelAddTaskBtn">Cancel</button>
+                <button class="btn btn-primary" id="createTaskBtn">Create Task</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Get elements
-        const addTaskBtn = document.getElementById('addTaskBtn');
-        const modal = document.getElementById('addTaskModal');
-        const closeBtn = document.getElementById('closeModalBtn');
-        const cancelBtn = document.getElementById('cancelBtn');
-        const addBtn = document.getElementById('addBtn');
-        const serviceSelect = document.getElementById('serviceSelect');
-        const otherTaskFields = document.getElementById('otherTaskFields');
+        // Global variables to store current task data
+        let currentTaskData = {};
 
-        // Task Detail Modal elements
-        const taskDetailModal = document.getElementById('taskDetailModal');
-        const closeTaskDetailBtn = document.getElementById('closeTaskDetailBtn');
-        const cancelTaskDetailBtn = document.getElementById('cancelTaskDetailBtn');
-        const saveTaskDetailBtn = document.getElementById('saveTaskDetailBtn');
-
-        // Function to open task detail modal
-        function openTaskDetail(serviceName, description, category, dueDate, assignedTo, notes, status) {
-            document.getElementById('taskDetailTitle').textContent = serviceName;
-            document.getElementById('detailServiceName').value = serviceName;
-            document.getElementById('detailDescription').value = description;
-            document.getElementById('detailCategory').value = category;
-            document.getElementById('detailDueDate').value = dueDate;
-            document.getElementById('detailAssignedTo').value = assignedTo;
-            document.getElementById('detailNotes').value = notes;
-            document.getElementById('detailStatus').value = status;
-            
-            taskDetailModal.style.display = 'block';
-        }
-
-        // Function to close task detail modal
-        function closeTaskDetailModal() {
-            taskDetailModal.style.display = 'none';
-        }
-
-        // Task detail modal event listeners
-        closeTaskDetailBtn.addEventListener('click', closeTaskDetailModal);
-        cancelTaskDetailBtn.addEventListener('click', closeTaskDetailModal);
-
-        // Close modal when clicking outside
-        taskDetailModal.addEventListener('click', function(e) {
-            if (e.target === taskDetailModal) {
-                closeTaskDetailModal();
-            }
-        });
-
-        // Save task details
-        saveTaskDetailBtn.addEventListener('click', function() {
-            // Here you would save the changes back to the table
-            alert('Task details saved successfully!');
-            closeTaskDetailModal();
-        });
-
-        // Make functions globally available
-        window.openTaskDetail = openTaskDetail;
-
-        // Show/hide additional fields based on service selection
-        serviceSelect.addEventListener('change', function() {
-            if (this.value === 'other-tasks') {
-                otherTaskFields.style.display = 'block';
-            } else {
-                otherTaskFields.style.display = 'none';
-                // Clear the fields when hidden
-                document.getElementById('taskTitle').value = '';
-                document.getElementById('taskDescription').value = '';
-            }
-        });
-
-        // Open modal
-        addTaskBtn.addEventListener('click', function() {
-            modal.style.display = 'block';
-        });
-
-        // Close modal functions
-        function closeModal() {
-            modal.style.display = 'none';
-            // Reset form when closing
-            serviceSelect.value = '';
-            otherTaskFields.style.display = 'none';
-            document.getElementById('taskTitle').value = '';
-            document.getElementById('taskDescription').value = '';
-            document.getElementById('taskNotes').value = '';
-            document.getElementById('taskStatus').selectedIndex = 0;
-            document.getElementById('assignedTo').selectedIndex = 0;
-            document.getElementById('taskDueDate').value = '2025-06-30';
-        }
-
-        closeBtn.addEventListener('click', closeModal);
-        cancelBtn.addEventListener('click', closeModal);
-
-        // Close modal when clicking outside
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-
-        // Add task function
-        addBtn.addEventListener('click', function() {
-            const serviceSelect = document.getElementById('serviceSelect');
-            const assignedTo = document.getElementById('assignedTo');
-            const dueDate = document.getElementById('taskDueDate');
-            const taskNotes = document.getElementById('taskNotes');
-            const taskStatus = document.getElementById('taskStatus');
-            
-            if (!serviceSelect.value) {
-                alert('Please select a service');
-                return;
-            }
-            
-            // Get service name and category
-            let serviceName = '';
-            let serviceDescription = '';
-            let category = '';
-            
-            // Determine service details based on selection
-            switch(serviceSelect.value) {
-                case 'performance-reviews':
-                    serviceName = 'Performance Reviews';
-                    serviceDescription = 'Monthly analysis of campaign performance and optimization recommendations';
-                    category = 'Optimization';
-                    break;
-                case 'publisher-recommendations':
-                    serviceName = 'Publisher Recommendations';
-                    serviceDescription = 'Monthly publisher outreach and partnership recommendations';
-                    category = 'Publisher Management';
-                    break;
-                case 'monthly-checkins':
-                    serviceName = 'Monthly Check-ins';
-                    serviceDescription = 'Regular client calls to discuss performance and strategy';
-                    category = 'Communication';
-                    break;
-                case 'account-maintenance':
-                    serviceName = 'Account Maintenance';
-                    serviceDescription = 'Regular account cleanup and maintenance tasks';
-                    category = 'Housekeeping';
-                    break;
-                case 'social-media-audit':
-                    serviceName = 'Custom: Social Media Audit';
-                    serviceDescription = 'Quarterly review of social media performance and recommendations';
-                    category = 'Other';
-                    break;
-                case 'other-tasks':
-                    const taskTitle = document.getElementById('taskTitle').value;
-                    const taskDescription = document.getElementById('taskDescription').value;
-                    
-                    if (!taskTitle.trim()) {
-                        alert('Please enter a task title for ad-hoc requests');
-                        return;
-                    }
-                    
-                    serviceName = taskTitle;
-                    serviceDescription = taskDescription || 'Ad-hoc client request';
-                    category = 'Other';
-                    break;
-            }
-            
-            // Create new table row
-            const tableBody = document.querySelector('.service-table tbody');
-            const newRow = document.createElement('tr');
-            newRow.className = 'task-row';
-            
-            newRow.innerHTML = `
-                <td>
-                    <div class="service-name-container">
-                        <div class="service-name">${serviceName}</div>
-                        <button class="remove-btn" onclick="removeTask(this)">Delete</button>
-                    </div>
-                </td>
-                <td>
-                    <div class="service-description">${serviceDescription}</div>
-                </td>
-                <td>
-                    <div class="category">${category}</div>
-                </td>
-                <td>
-                    <input type="date" class="date-field" value="${dueDate.value}">
-                </td>
-                <td>
-                    <select class="select-field">
-                        <option ${assignedTo.value === 'Chandler Bing' ? 'selected' : ''}>Chandler Bing</option>
-                        <option ${assignedTo.value === 'Monica Geller' ? 'selected' : ''}>Monica Geller</option>
-                        <option ${assignedTo.value === 'Ross Geller' ? 'selected' : ''}>Ross Geller</option>
-                        <option ${assignedTo.value === 'Rachel Green' ? 'selected' : ''}>Rachel Green</option>
-                        <option ${assignedTo.value === 'Joey Tribbiani' ? 'selected' : ''}>Joey Tribbiani</option>
-                        <option ${assignedTo.value === 'Phoebe Buffay' ? 'selected' : ''}>Phoebe Buffay</option>
-                    </select>
-                </td>
-                <td>
-                    <select class="select-field" style="width: 100px; font-size: 0.75rem;">
-                        <option value="not-completed" ${taskStatus.value === 'not-completed' ? 'selected' : ''}>Not Completed</option>
-                        <option value="completed" ${taskStatus.value === 'completed' ? 'selected' : ''}>Completed</option>
-                    </select>
-                </td>
-            `;
-            
-            // Add the new row to the table
-            tableBody.appendChild(newRow);
-            
-            alert(`Task "${serviceName}" added successfully!`);
-            closeModal();
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTabs();
+            initializeModals();
         });
 
         // Tab functionality
-        document.querySelectorAll('.tab-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const tabName = this.getAttribute('data-tab');
-                
-                // Remove active from all tabs
-                document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-                
-                // Add active to clicked tab
-                this.classList.add('active');
-                document.getElementById(tabName + '-tab').classList.add('active');
+        function initializeTabs() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(targetTab + '-tab').classList.add('active');
+                });
             });
-        });
+        }
 
-        // Escape key to close modal
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
+        // Modal functionality
+        function initializeModals() {
+            // Add Task Modal
+            const addTaskBtn = document.getElementById('addTaskBtn');
+            const addTaskModal = document.getElementById('addTaskModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const cancelAddTaskBtn = document.getElementById('cancelAddTaskBtn');
+
+            if (addTaskBtn) {
+                addTaskBtn.addEventListener('click', () => {
+                    addTaskModal.style.display = 'block';
+                });
             }
-        });
 
-        // Function to remove user-added tasks
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', () => {
+                    addTaskModal.style.display = 'none';
+                });
+            }
+
+            if (cancelAddTaskBtn) {
+                cancelAddTaskBtn.addEventListener('click', () => {
+                    addTaskModal.style.display = 'none';
+                });
+            }
+
+            // Task Detail Modal
+            const taskDetailModal = document.getElementById('taskDetailModal');
+            const closeTaskDetailBtn = document.getElementById('closeTaskDetailBtn');
+            const cancelTaskDetailBtn = document.getElementById('cancelTaskDetailBtn');
+            const saveTaskDetailBtn = document.getElementById('saveTaskDetailBtn');
+
+            if (closeTaskDetailBtn) {
+                closeTaskDetailBtn.addEventListener('click', () => {
+                    taskDetailModal.style.display = 'none';
+                });
+            }
+
+            if (cancelTaskDetailBtn) {
+                cancelTaskDetailBtn.addEventListener('click', () => {
+                    taskDetailModal.style.display = 'none';
+                });
+            }
+
+            if (saveTaskDetailBtn) {
+                saveTaskDetailBtn.addEventListener('click', () => {
+                    saveTaskDetails();
+                });
+            }
+
+            // Close modals when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === addTaskModal) {
+                    addTaskModal.style.display = 'none';
+                }
+                if (e.target === taskDetailModal) {
+                    taskDetailModal.style.display = 'none';
+                }
+            });
+        }
+
+        // Open task detail modal
+        function openTaskDetail(name, description, category, dueDate, assignedTo, notes, status) {
+            // Store current task data
+            currentTaskData = {
+                name: name,
+                description: description,
+                category: category,
+                dueDate: dueDate,
+                assignedTo: assignedTo,
+                notes: notes,
+                status: status
+            };
+
+            // Populate the modal fields
+            document.getElementById('taskDetailTitle').textContent = name;
+            document.getElementById('taskDetailName').value = name;
+            document.getElementById('taskDetailDescription').value = description;
+            document.getElementById('taskDetailCategory').value = category;
+            document.getElementById('taskDetailDueDate').value = dueDate;
+            document.getElementById('taskDetailNotes').value = notes;
+            
+            // Set the assigned person
+            const assignedSelect = document.getElementById('taskDetailAssigned');
+            if (assignedSelect) {
+                assignedSelect.value = assignedTo;
+            }
+
+            // Show the modal
+            document.getElementById('taskDetailModal').style.display = 'block';
+        }
+
+        // Save task details
+        function saveTaskDetails() {
+            const updatedData = {
+                name: document.getElementById('taskDetailName').value,
+                description: document.getElementById('taskDetailDescription').value,
+                category: document.getElementById('taskDetailCategory').value,
+                dueDate: document.getElementById('taskDetailDueDate').value,
+                assignedTo: document.getElementById('taskDetailAssigned').value,
+                notes: document.getElementById('taskDetailNotes').value
+            };
+
+            // In a real application, you would save this data to a server
+            console.log('Saving task details:', updatedData);
+            
+            // Show success message (you could implement a toast notification here)
+            alert('Task details saved successfully!');
+            
+            // Close the modal
+            document.getElementById('taskDetailModal').style.display = 'none';
+        }
+
+        // Remove task function
         function removeTask(button) {
             if (confirm('Are you sure you want to remove this task?')) {
                 const row = button.closest('tr');
-                row.remove();
+                if (row) {
+                    row.remove();
+                }
             }
         }
-
-        // Make removeTask globally available
-        window.removeTask = removeTask;
     </script>
 </body>
 </html>
