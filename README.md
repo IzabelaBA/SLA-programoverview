@@ -1047,6 +1047,174 @@
                 }
             }
         }
+
+        // Add task functionality
+        function initializeAddTask() {
+            const createTaskBtn = document.getElementById('createTaskBtn');
+            const serviceSelect = document.getElementById('serviceSelect');
+            const otherTaskFields = document.getElementById('otherTaskFields');
+
+            // Show/hide other task fields based on selection
+            if (serviceSelect) {
+                serviceSelect.addEventListener('change', function() {
+                    if (this.value === 'other-tasks') {
+                        otherTaskFields.style.display = 'block';
+                    } else {
+                        otherTaskFields.style.display = 'none';
+                    }
+                });
+            }
+
+            // Create task button click handler
+            if (createTaskBtn) {
+                createTaskBtn.addEventListener('click', function() {
+                    createNewTask();
+                });
+            }
+        }
+
+        // Create new task function
+        function createNewTask() {
+            const serviceSelect = document.getElementById('serviceSelect');
+            const assignedTo = document.getElementById('assignedTo');
+            const taskDueDate = document.getElementById('taskDueDate');
+            const taskNotes = document.getElementById('taskNotes');
+            const taskTitle = document.getElementById('taskTitle');
+            const taskDescription = document.getElementById('taskDescription');
+
+            // Validate required fields
+            if (!serviceSelect.value) {
+                alert('Please select a service');
+                return;
+            }
+
+            // Get task data based on selection
+            let taskData = {};
+            
+            if (serviceSelect.value === 'other-tasks') {
+                // Custom task
+                if (!taskTitle.value.trim()) {
+                    alert('Please enter a task title');
+                    return;
+                }
+                taskData = {
+                    name: taskTitle.value.trim(),
+                    description: taskDescription.value.trim() || 'Custom task',
+                    category: 'Other',
+                    isCustom: true
+                };
+            } else {
+                // Predefined service
+                const serviceData = getServiceData(serviceSelect.value);
+                taskData = {
+                    name: serviceData.name,
+                    description: serviceData.description,
+                    category: serviceData.category,
+                    isCustom: false
+                };
+            }
+
+            // Create the new row
+            const tableBody = document.querySelector('.service-table tbody');
+            const newRow = document.createElement('tr');
+            newRow.className = 'task-row';
+
+            const taskNameHtml = taskData.isCustom 
+                ? `<div class="service-name-container">
+                     <div class="service-name" onclick="openTaskDetail('${taskData.name}', '${taskData.description}', '${taskData.category}', '${taskDueDate.value}', '${assignedTo.value}', '${taskNotes.value}', 'not-completed')">${taskData.name}</div>
+                     <button class="remove-btn" onclick="removeTask(this)">Delete</button>
+                   </div>`
+                : `<div class="service-name" onclick="openTaskDetail('${taskData.name}', '${taskData.description}', '${taskData.category}', '${taskDueDate.value}', '${assignedTo.value}', '${taskNotes.value}', 'not-completed')">${taskData.name}</div>`;
+
+            newRow.innerHTML = `
+                <td>${taskNameHtml}</td>
+                <td>
+                    <div class="service-description">${taskData.description}</div>
+                </td>
+                <td>
+                    <div class="category">${taskData.category}</div>
+                </td>
+                <td>
+                    <input type="date" class="date-field" value="${taskDueDate.value}">
+                </td>
+                <td>
+                    <select class="select-field">
+                        <option ${assignedTo.value === 'Chandler Bing' ? 'selected' : ''}>Chandler Bing</option>
+                        <option ${assignedTo.value === 'Monica Geller' ? 'selected' : ''}>Monica Geller</option>
+                        <option ${assignedTo.value === 'Ross Geller' ? 'selected' : ''}>Ross Geller</option>
+                        <option ${assignedTo.value === 'Rachel Green' ? 'selected' : ''}>Rachel Green</option>
+                        <option ${assignedTo.value === 'Joey Tribbiani' ? 'selected' : ''}>Joey Tribbiani</option>
+                        <option ${assignedTo.value === 'Phoebe Buffay' ? 'selected' : ''}>Phoebe Buffay</option>
+                    </select>
+                </td>
+                <td>
+                    <select class="select-field" style="width: 100px; font-size: 0.75rem;">
+                        <option value="not-completed">Not Completed</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </td>
+            `;
+
+            // Add the row to the table
+            tableBody.appendChild(newRow);
+
+            // Clear the form and close modal
+            clearAddTaskForm();
+            document.getElementById('addTaskModal').style.display = 'none';
+
+            // Show success message
+            alert('Task added successfully!');
+        }
+
+        // Get service data based on selection
+        function getServiceData(serviceValue) {
+            const serviceMap = {
+                'performance-reviews': {
+                    name: 'Performance Reviews',
+                    description: 'Monthly analysis of campaign performance and optimization recommendations',
+                    category: 'Optimization'
+                },
+                'publisher-recommendations': {
+                    name: 'Publisher Recommendations',
+                    description: 'Monthly publisher outreach and partnership recommendations',
+                    category: 'Publisher Management'
+                },
+                'monthly-checkins': {
+                    name: 'Monthly Check-ins',
+                    description: 'Regular client calls to discuss performance and strategy',
+                    category: 'Communication'
+                },
+                'account-maintenance': {
+                    name: 'Account Maintenance',
+                    description: 'Regular account cleanup and maintenance tasks',
+                    category: 'Housekeeping'
+                },
+                'social-media-audit': {
+                    name: 'Custom: Social Media Audit',
+                    description: 'Quarterly review of social media performance and recommendations',
+                    category: 'Other'
+                }
+            };
+            return serviceMap[serviceValue] || { name: 'Unknown Service', description: '', category: 'Other' };
+        }
+
+        // Clear add task form
+        function clearAddTaskForm() {
+            document.getElementById('serviceSelect').value = '';
+            document.getElementById('taskTitle').value = '';
+            document.getElementById('taskDescription').value = '';
+            document.getElementById('assignedTo').selectedIndex = 0;
+            document.getElementById('taskDueDate').value = '2025-06-30';
+            document.getElementById('taskNotes').value = '';
+            document.getElementById('otherTaskFields').style.display = 'none';
+        }
+
+        // Update the initialization to include add task functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTabs();
+            initializeModals();
+            initializeAddTask();
+        });
     </script>
 </body>
 </html>
