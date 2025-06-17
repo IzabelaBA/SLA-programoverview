@@ -234,7 +234,7 @@
         }
 
         .info-value.status {
-            color: #04844B;
+            color: #0176D3;
         }
 
         .contact-card {
