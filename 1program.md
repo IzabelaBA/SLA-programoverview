@@ -537,9 +537,10 @@
                                     <textarea class="textarea-field" placeholder="Add notes...">Pending client feedback on Q1 performance metrics</textarea>
                                 </td>
                                 <td>
-                                    <div class="checkbox-container">
-                                        <input type="checkbox" class="checkbox">
-                                    </div>
+                                    <select class="select-field" style="width: 100px; font-size: 0.75rem;">
+                                        <option value="not-completed">Not Completed</option>
+                                        <option value="completed">Completed</option>
+                                    </select>
                                 </td>
                             </tr>
                             
@@ -570,9 +571,10 @@
                                     <textarea class="textarea-field" placeholder="Add notes...">Research in progress for new tech publishers</textarea>
                                 </td>
                                 <td>
-                                    <div class="checkbox-container">
-                                        <input type="checkbox" class="checkbox">
-                                    </div>
+                                    <select class="select-field" style="width: 100px; font-size: 0.75rem;">
+                                        <option value="not-completed">Not Completed</option>
+                                        <option value="completed">Completed</option>
+                                    </select>
                                 </td>
                             </tr>
                             
@@ -603,9 +605,10 @@
                                     <textarea class="textarea-field" placeholder="Add notes...">Call went well, client satisfied with current performance</textarea>
                                 </td>
                                 <td>
-                                    <div class="checkbox-container">
-                                        <input type="checkbox" checked class="checkbox">
-                                    </div>
+                                    <select class="select-field" style="width: 100px; font-size: 0.75rem;">
+                                        <option value="not-completed">Not Completed</option>
+                                        <option value="completed" selected>Completed</option>
+                                    </select>
                                 </td>
                             </tr>
                             
@@ -636,9 +639,10 @@
                                     <textarea class="textarea-field" placeholder="Add notes...">Scheduled for next week - cleanup inactive publishers</textarea>
                                 </td>
                                 <td>
-                                    <div class="checkbox-container">
-                                        <input type="checkbox" class="checkbox">
-                                    </div>
+                                    <select class="select-field" style="width: 100px; font-size: 0.75rem;">
+                                        <option value="not-completed">Not Completed</option>
+                                        <option value="completed">Completed</option>
+                                    </select>
                                 </td>
                             </tr>
                             
@@ -669,9 +673,10 @@
                                     <textarea class="textarea-field" placeholder="Add notes...">Awaiting social media access from client</textarea>
                                 </td>
                                 <td>
-                                    <div class="checkbox-container">
-                                        <input type="checkbox" class="checkbox">
-                                    </div>
+                                    <select class="select-field" style="width: 100px; font-size: 0.75rem;">
+                                        <option value="not-completed">Not Completed</option>
+                                        <option value="completed">Completed</option>
+                                    </select>
                                 </td>
                             </tr>
                             
@@ -705,9 +710,10 @@
                                     <textarea class="textarea-field" placeholder="Add notes...">No current tasks - ready for ad-hoc requests</textarea>
                                 </td>
                                 <td>
-                                    <div class="checkbox-container">
-                                        <input type="checkbox" class="checkbox">
-                                    </div>
+                                    <select class="select-field" style="width: 100px; font-size: 0.75rem;">
+                                        <option value="not-completed">Not Completed</option>
+                                        <option value="completed">Completed</option>
+                                    </select>
                                 </td>
                             </tr>
                         </tbody>
@@ -761,7 +767,7 @@
                             <span class="contact-detail-value">Business (Other)</span>
                         </div>
                         <div class="contact-detail">
-                            <span class="contact-detail-label">Survey:</span>
+                            <span class="contact-detail-label">Survey Recipient:</span>
                             <span class="contact-detail-value">No</span>
                         </div>
                     </div>
@@ -777,7 +783,7 @@
                             <span class="contact-detail-value">Business (Other)</span>
                         </div>
                         <div class="contact-detail">
-                            <span class="contact-detail-label">Survey:</span>
+                            <span class="contact-detail-label">Survey Recipient:</span>
                             <span class="contact-detail-value survey-yes">Yes</span>
                         </div>
                     </div>
@@ -1004,9 +1010,10 @@
                     <textarea class="textarea-field" placeholder="Add notes...">${taskNotes.value}</textarea>
                 </td>
                 <td>
-                    <div class="checkbox-container">
-                        <input type="checkbox" class="checkbox" ${taskStatus.value === 'completed' ? 'checked' : ''}>
-                    </div>
+                    <select class="select-field" style="width: 100px; font-size: 0.75rem;">
+                        <option value="not-completed" ${taskStatus.value === 'not-completed' ? 'selected' : ''}>Not Completed</option>
+                        <option value="completed" ${taskStatus.value === 'completed' ? 'selected' : ''}>Completed</option>
+                    </select>
                 </td>
             `;
             
