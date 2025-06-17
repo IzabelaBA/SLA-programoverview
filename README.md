@@ -545,6 +545,7 @@
                                     <select class="select-field" style="width: 100px; font-size: 0.75rem;">
                                         <option value="not-completed">Not Completed</option>
                                         <option value="completed">Completed</option>
+                                        <option value="skipped">Skipped</option>
                                     </select>
                                 </td>
                             </tr>
@@ -576,6 +577,7 @@
                                     <select class="select-field" style="width: 100px; font-size: 0.75rem;">
                                         <option value="not-completed">Not Completed</option>
                                         <option value="completed">Completed</option>
+                                        <option value="skipped">Skipped</option>
                                     </select>
                                 </td>
                             </tr>
@@ -607,6 +609,7 @@
                                     <select class="select-field" style="width: 100px; font-size: 0.75rem;">
                                         <option value="not-completed">Not Completed</option>
                                         <option value="completed" selected>Completed</option>
+                                        <option value="skipped">Skipped</option>
                                     </select>
                                 </td>
                             </tr>
@@ -638,6 +641,7 @@
                                     <select class="select-field" style="width: 100px; font-size: 0.75rem;">
                                         <option value="not-completed">Not Completed</option>
                                         <option value="completed">Completed</option>
+                                        <option value="skipped">Skipped</option>
                                     </select>
                                 </td>
                             </tr>
@@ -669,6 +673,7 @@
                                     <select class="select-field" style="width: 100px; font-size: 0.75rem;">
                                         <option value="not-completed">Not Completed</option>
                                         <option value="completed">Completed</option>
+                                        <option value="skipped">Skipped</option>
                                     </select>
                                 </td>
                             </tr>
@@ -703,6 +708,7 @@
                                     <select class="select-field" style="width: 100px; font-size: 0.75rem;">
                                         <option value="not-completed">Not Completed</option>
                                         <option value="completed">Completed</option>
+                                        <option value="skipped">Skipped</option>
                                     </select>
                                 </td>
                             </tr>
@@ -843,16 +849,13 @@
                     <label for="serviceSelect" class="form-label">Select Service</label>
                     <select id="serviceSelect" class="form-select">
                         <option value="">Choose a service...</option>
-                        <option value="performance-reviews">Performance Reviews - Optimization</option>
-                        <option value="publisher-recommendations">Publisher Recommendations - Publisher Management</option>
-                        <option value="monthly-checkins">Monthly Check-ins - Communication</option>
-                        <option value="account-maintenance">Account Maintenance - Housekeeping</option>
-                        <option value="social-media-audit">Custom: Social Media Audit - Other</option>
+                        <option value="performance-reviews">Performance Reviews - Optimization (Occurrence: Included, Included: Yes)</option>
+                        <option value="publisher-recommendations">Publisher Recommendations - Publisher Management (Occurrence: Included, Included: Yes)</option>
+                        <option value="monthly-checkins">Monthly Check-ins - Communication (Occurrence: Included, Included: Yes)</option>
+                        <option value="account-maintenance">Account Maintenance - Housekeeping (Occurrence: Included, Included: Yes)</option>
+                        <option value="social-media-audit">Custom: Social Media Audit - Other (Occurrence: Upon Request, Included: Yes)</option>
                         <option value="other-tasks">Other Tasks - Other (Ad-hoc requests)</option>
                     </select>
-                    <div style="font-size: 0.75rem; color: #706E6B; margin-top: 0.5rem;">
-                        * Only services configured as "Upon Request" are available for task creation
-                    </div>
                 </div>
 
                 <!-- Additional fields for Other Tasks (initially hidden) -->
@@ -1099,7 +1102,7 @@
                 }
                 taskData = {
                     name: taskTitle.value.trim(),
-                    description: taskDescription.value.trim() || 'Custom task',
+                    description: taskDescription.value.trim() || 'Custom task - no description provided',
                     category: 'Other',
                     isCustom: true
                 };
@@ -1151,6 +1154,7 @@
                     <select class="select-field" style="width: 100px; font-size: 0.75rem;">
                         <option value="not-completed">Not Completed</option>
                         <option value="completed">Completed</option>
+                        <option value="skipped">Skipped</option>
                     </select>
                 </td>
             `;
