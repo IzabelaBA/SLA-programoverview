@@ -122,7 +122,7 @@
         }
 
         .category {
-            font-size: 0.875rem;
+            font-size: 0.75rem;
             color: #181818;
         }
 
@@ -198,10 +198,10 @@
 
         .col-service { width: 18%; }
         .col-description { width: 22%; }
-        .col-category { width: 12%; }
+        .col-category { width: 8%; }
         .col-date { width: 10%; }
         .col-assigned { width: 12%; }
-        .col-notes { width: 22%; }
+        .col-notes { width: 26%; }
         .col-status { width: 8%; }
 
         /* Tabs Styling */
@@ -454,6 +454,29 @@
             background: #f0f0f0;
             color: #181818;
         }
+
+        /* Remove button for user-added tasks */
+        .remove-btn {
+            background: #dc2626;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.625rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            margin-left: 0.5rem;
+        }
+
+        .remove-btn:hover {
+            background: #b91c1c;
+        }
+
+        .service-name-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
     </style>
 </head>
 <body>
@@ -654,7 +677,10 @@
                             
                             <tr class="task-row">
                                 <td>
-                                    <div class="service-name">Other Tasks</div>
+                                    <div class="service-name-container">
+                                        <div class="service-name">Other Tasks</div>
+                                        <button class="remove-btn" onclick="removeTask(this)" style="display: none;">Delete</button>
+                                    </div>
                                 </td>
                                 <td>
                                     <div class="service-description">Ad-hoc tasks and client requests not covered by standard services</div>
@@ -950,7 +976,10 @@
             
             newRow.innerHTML = `
                 <td>
-                    <div class="service-name">${serviceName}</div>
+                    <div class="service-name-container">
+                        <div class="service-name">${serviceName}</div>
+                        <button class="remove-btn" onclick="removeTask(this)">Delete</button>
+                    </div>
                 </td>
                 <td>
                     <div class="service-description">${serviceDescription}</div>
@@ -1009,6 +1038,17 @@
                 closeModal();
             }
         });
+
+        // Function to remove user-added tasks
+        function removeTask(button) {
+            if (confirm('Are you sure you want to remove this task?')) {
+                const row = button.closest('tr');
+                row.remove();
+            }
+        }
+
+        // Make removeTask globally available
+        window.removeTask = removeTask;
     </script>
 </body>
 </html>
