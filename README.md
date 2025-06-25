@@ -596,7 +596,7 @@
                                         <td>Weekly</td>
                                         <td>Upon Request</td>
                                         <td>2025-06-05</td>
-                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem;"><input type="checkbox" checked disabled style="margin-right: 0.5rem;">Yes</label></td>
                                     </tr>
                                     <tr class="task-row">
                                         <td>2</td>
@@ -604,7 +604,7 @@
                                         <td>Quarterly</td>
                                         <td>Included</td>
                                         <td>2025-06-05</td>
-                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem;"><input type="checkbox" checked disabled style="margin-right: 0.5rem;">Yes</label></td>
                                     </tr>
                                     <tr class="task-row">
                                         <td>3</td>
@@ -612,7 +612,7 @@
                                         <td>Quarterly</td>
                                         <td>Included</td>
                                         <td>2025-06-05</td>
-                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem;"><input type="checkbox" checked disabled style="margin-right: 0.5rem;">Yes</label></td>
                                     </tr>
                                     <tr class="task-row">
                                         <td>4</td>
@@ -620,7 +620,7 @@
                                         <td>Quarterly</td>
                                         <td>Included</td>
                                         <td>2025-06-05</td>
-                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem;"><input type="checkbox" checked disabled style="margin-right: 0.5rem;">Yes</label></td>
                                     </tr>
                                     <tr class="task-row">
                                         <td>5</td>
@@ -628,7 +628,7 @@
                                         <td>Quarterly</td>
                                         <td>Included</td>
                                         <td>2025-06-05</td>
-                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem;"><input type="checkbox" checked disabled style="margin-right: 0.5rem;">Yes</label></td>
                                     </tr>
                                     <tr class="task-row">
                                         <td>6</td>
@@ -636,7 +636,7 @@
                                         <td>Weekly</td>
                                         <td>Included</td>
                                         <td>2025-06-05</td>
-                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem;"><input type="checkbox" checked disabled style="margin-right: 0.5rem;">Yes</label></td>
                                     </tr>
                                     <tr class="task-row">
                                         <td>7</td>
@@ -644,7 +644,7 @@
                                         <td>Monthly</td>
                                         <td>Included</td>
                                         <td>2025-06-05</td>
-                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem;"><input type="checkbox" checked disabled style="margin-right: 0.5rem;">Yes</label></td>
                                     </tr>
                                     <tr class="task-row">
                                         <td>8</td>
@@ -652,7 +652,7 @@
                                         <td>Weekly</td>
                                         <td>Upon Request</td>
                                         <td>2025-06-05</td>
-                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem;"><input type="checkbox" checked disabled style="margin-right: 0.5rem;">Yes</label></td>
                                     </tr>
                                     <tr class="task-row">
                                         <td>9</td>
@@ -660,7 +660,7 @@
                                         <td>Monthly</td>
                                         <td>Included</td>
                                         <td>2025-06-05</td>
-                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem;"><input type="checkbox" checked disabled style="margin-right: 0.5rem;">Yes</label></td>
                                     </tr>
                                     <tr class="task-row">
                                         <td>10</td>
@@ -668,7 +668,7 @@
                                         <td>Quarterly</td>
                                         <td>Included</td>
                                         <td>2025-06-05</td>
-                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem;"><input type="checkbox" checked disabled style="margin-right: 0.5rem;">Yes</label></td>
                                     </tr>
                                 </tbody>
                             </table>
