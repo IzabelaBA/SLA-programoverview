@@ -19,7 +19,7 @@
         }
 
         .program-header {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto 1.5rem auto;
             background: white;
             border-radius: 8px;
@@ -35,10 +35,71 @@
         }
 
         .main-container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
             display: flex;
             gap: 1.5rem;
+        }
+
+        .packages-sidebar {
+            flex: 0 0 280px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+            height: fit-content;
+        }
+
+        .packages-header {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-bottom: 1px solid #e5e5e5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .packages-info {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .packages-search {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .packages-list {
+            padding: 0.5rem 0;
+        }
+
+        .package-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .package-item:hover {
+            background: #f8f9fa;
+        }
+
+        .package-item.active {
+            background: #e8f4fd;
+            border-left: 3px solid #0176D3;
+        }
+
+        .package-name {
+            font-weight: 600;
+            color: #181818;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .package-type {
+            font-size: 0.75rem;
+            color: #706E6B;
         }
 
         .left-section {
@@ -118,49 +179,10 @@
             color: #014486;
         }
 
-        .service-description {
-            font-size: 0.75rem;
-            color: #706E6B;
-            line-height: 1.4;
-            margin-top: 0.25rem;
-        }
-
-        .category {
-            font-size: 0.75rem;
-            color: #181818;
-        }
-
-        .date-field {
-            background: white;
-            border: 1px solid #D8D8D8;
-            border-radius: 4px;
-            padding: 0.5rem;
-            font-size: 0.875rem;
-            font-family: inherit;
-            width: 130px;
-        }
-
-        .select-field {
-            background: white;
-            border: 1px solid #D8D8D8;
-            border-radius: 4px;
-            padding: 0.5rem;
-            font-size: 0.875rem;
-            min-width: 120px;
-            cursor: pointer;
-        }
-
-        .select-field:focus, .date-field:focus {
-            outline: none;
-            border-color: #0176D3;
-        }
-
-        .col-service { width: 22%; }
-        .col-description { width: 28%; }
-        .col-category { width: 10%; }
-        .col-date { width: 12%; }
-        .col-assigned { width: 16%; }
-        .col-status { width: 12%; }
+        .col-service { width: 30%; }
+        .col-date { width: 20%; }
+        .col-assigned { width: 30%; }
+        .col-status { width: 20%; }
 
         /* Tabs Styling */
         .tabs-container {
@@ -201,7 +223,6 @@
         }
 
         .tab-content {
-            padding: 1.5rem;
             display: none;
         }
 
@@ -350,12 +371,6 @@
             margin: 0;
         }
 
-        .modal-subtitle {
-            font-size: 0.875rem;
-            color: #706E6B;
-            margin: 0.5rem 0 0 0;
-        }
-
         .modal-body {
             padding: 1.5rem;
         }
@@ -491,296 +506,336 @@
 <body>
     <!-- Program Header -->
     <div class="program-header">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h1 class="program-title">TechCorp Affiliate Program</h1>
-            <button class="btn btn-primary" id="addTaskBtn">+ Add Task</button>
-        </div>
+        <h1 class="program-title">TechCorp Affiliate Program</h1>
     </div>
 
     <div class="main-container">
-        <!-- Left Section: Service Tasks Table -->
-        <div class="left-section">
-            <div class="container">
-                <div class="header">
-                    <h1>Service Tasks</h1>
+        <!-- Left Sidebar: My Packages -->
+        <div class="packages-sidebar">
+            <div class="packages-header">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="background: #f39c12; width: 20px; height: 20px; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: white;">📦</span>
+                    <h2 style="font-size: 1rem; font-weight: 600; color: #181818; margin: 0;">My Packages</h2>
+                    <button style="background: none; border: none; color: #706E6B; cursor: pointer; font-size: 0.75rem;">▼</button>
+                </div>
+                <button style="background: none; border: none; color: #706E6B; cursor: pointer; font-size: 1rem;">ℹ️</button>
+            </div>
+            
+            <div class="packages-info">
+                <span style="color: #706E6B; font-size: 0.75rem;">4 items • Updated less 3 minutes</span>
+            </div>
+            
+            <div class="packages-search">
+                <input type="text" placeholder="Search this list..." style="width: 100%; padding: 0.5rem; border: 1px solid #d8d8d8; border-radius: 4px; font-size: 0.875rem;">
+            </div>
+            
+            <div class="packages-list">
+                <div class="package-item">
+                    <input type="checkbox" style="margin-right: 0.75rem;">
+                    <div>
+                        <div class="package-name">Healthcare</div>
+                        <div class="package-type">Premium</div>
+                    </div>
                 </div>
                 
-                <div class="table-container">
-                    <table class="service-table">
-                        <thead>
-                            <tr>
-                                <th class="col-service">Service Name</th>
-                                <th class="col-description">Description</th>
-                                <th class="col-category">Category</th>
-                                <th class="col-date">Due Date</th>
-                                <th class="col-assigned">Assigned To</th>
-                                <th class="col-status">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="task-row">
-                                <td>
-                                    <div class="service-name" onclick="openTaskDetail('Performance Reviews', 'Monthly analysis of campaign performance and optimization recommendations', 'Optimization', '2025-06-15', 'Chandler Bing', 'Pending client feedback on Q1 performance metrics', 'not-completed')">Performance Reviews</div>
-                                </td>
-                                <td>
-                                    <div class="service-description">Monthly analysis of campaign performance and optimization recommendations</div>
-                                </td>
-                                <td>
-                                    <div class="category">Optimization</div>
-                                </td>
-                                <td>
-                                    <input type="date" class="date-field" value="2025-06-15">
-                                </td>
-                                <td>
-                                    <select class="select-field">
-                                        <option selected>Chandler Bing</option>
-                                        <option>Monica Geller</option>
-                                        <option>Ross Geller</option>
-                                        <option>Rachel Green</option>
-                                        <option>Joey Tribbiani</option>
-                                        <option>Phoebe Buffay</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="select-field" style="width: 100px; font-size: 0.75rem;">
-                                        <option value="not-completed">Not Completed</option>
-                                        <option value="completed">Completed</option>
-                                        <option value="skipped">Skipped</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            
-                            <tr class="task-row">
-                                <td>
-                                    <div class="service-name" onclick="openTaskDetail('Publisher Recommendations', 'Monthly publisher outreach and partnership recommendations', 'Publisher Management', '2025-06-20', 'Chandler Bing', 'Research in progress for new tech publishers', 'not-completed')">Publisher Recommendations</div>
-                                </td>
-                                <td>
-                                    <div class="service-description">Monthly publisher outreach and partnership recommendations</div>
-                                </td>
-                                <td>
-                                    <div class="category">Publisher Management</div>
-                                </td>
-                                <td>
-                                    <input type="date" class="date-field" value="2025-06-20">
-                                </td>
-                                <td>
-                                    <select class="select-field">
-                                        <option selected>Chandler Bing</option>
-                                        <option>Monica Geller</option>
-                                        <option>Ross Geller</option>
-                                        <option>Rachel Green</option>
-                                        <option>Joey Tribbiani</option>
-                                        <option>Phoebe Buffay</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="select-field" style="width: 100px; font-size: 0.75rem;">
-                                        <option value="not-completed">Not Completed</option>
-                                        <option value="completed">Completed</option>
-                                        <option value="skipped">Skipped</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            
-                            <tr class="task-row">
-                                <td>
-                                    <div class="service-name" onclick="openTaskDetail('Monthly Check-ins', 'Regular client calls to discuss performance and strategy', 'Communication', '2025-06-10', 'Chandler Bing', 'Call went well, client satisfied with current performance', 'completed')">Monthly Check-ins</div>
-                                </td>
-                                <td>
-                                    <div class="service-description">Regular client calls to discuss performance and strategy</div>
-                                </td>
-                                <td>
-                                    <div class="category">Communication</div>
-                                </td>
-                                <td>
-                                    <input type="date" class="date-field" value="2025-06-10">
-                                </td>
-                                <td>
-                                    <select class="select-field">
-                                        <option selected>Chandler Bing</option>
-                                        <option>Monica Geller</option>
-                                        <option>Ross Geller</option>
-                                        <option>Rachel Green</option>
-                                        <option>Joey Tribbiani</option>
-                                        <option>Phoebe Buffay</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="select-field" style="width: 100px; font-size: 0.75rem;">
-                                        <option value="not-completed">Not Completed</option>
-                                        <option value="completed" selected>Completed</option>
-                                        <option value="skipped">Skipped</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            
-                            <tr class="task-row">
-                                <td>
-                                    <div class="service-name" onclick="openTaskDetail('Account Maintenance', 'Regular account cleanup and maintenance tasks', 'Housekeeping', '2025-06-25', 'Chandler Bing', 'Scheduled for next week - cleanup inactive publishers', 'not-completed')">Account Maintenance</div>
-                                </td>
-                                <td>
-                                    <div class="service-description">Regular account cleanup and maintenance tasks</div>
-                                </td>
-                                <td>
-                                    <div class="category">Housekeeping</div>
-                                </td>
-                                <td>
-                                    <input type="date" class="date-field" value="2025-06-25">
-                                </td>
-                                <td>
-                                    <select class="select-field">
-                                        <option selected>Chandler Bing</option>
-                                        <option>Monica Geller</option>
-                                        <option>Ross Geller</option>
-                                        <option>Rachel Green</option>
-                                        <option>Joey Tribbiani</option>
-                                        <option>Phoebe Buffay</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="select-field" style="width: 100px; font-size: 0.75rem;">
-                                        <option value="not-completed">Not Completed</option>
-                                        <option value="completed">Completed</option>
-                                        <option value="skipped">Skipped</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            
-                            <tr class="task-row">
-                                <td>
-                                    <div class="service-name" onclick="openTaskDetail('Custom: Social Media Audit', 'Quarterly review of social media performance and recommendations', 'Other', '2025-06-18', 'Chandler Bing', 'Awaiting social media access from client', 'not-completed')">Custom: Social Media Audit</div>
-                                </td>
-                                <td>
-                                    <div class="service-description">Quarterly review of social media performance and recommendations</div>
-                                </td>
-                                <td>
-                                    <div class="category">Other</div>
-                                </td>
-                                <td>
-                                    <input type="date" class="date-field" value="2025-06-18">
-                                </td>
-                                <td>
-                                    <select class="select-field">
-                                        <option selected>Chandler Bing</option>
-                                        <option>Monica Geller</option>
-                                        <option>Ross Geller</option>
-                                        <option>Rachel Green</option>
-                                        <option>Joey Tribbiani</option>
-                                        <option>Phoebe Buffay</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="select-field" style="width: 100px; font-size: 0.75rem;">
-                                        <option value="not-completed">Not Completed</option>
-                                        <option value="completed">Completed</option>
-                                        <option value="skipped">Skipped</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            
-                            <tr class="task-row">
-                                <td>
-                                    <div class="service-name-container">
-                                        <div class="service-name" onclick="openTaskDetail('Other Tasks', 'Ad-hoc tasks and client requests not covered by standard services', 'Other', '2025-06-20', 'Chandler Bing', 'No current tasks - ready for ad-hoc requests', 'not-completed')">Other Tasks</div>
-                                        <button class="remove-btn" onclick="removeTask(this)" style="display: none;">Delete</button>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="service-description">Ad-hoc tasks and client requests not covered by standard services</div>
-                                </td>
-                                <td>
-                                    <div class="category">Other</div>
-                                </td>
-                                <td>
-                                    <input type="date" class="date-field" value="2025-06-20">
-                                </td>
-                                <td>
-                                    <select class="select-field">
-                                        <option selected>Chandler Bing</option>
-                                        <option>Monica Geller</option>
-                                        <option>Ross Geller</option>
-                                        <option>Rachel Green</option>
-                                        <option>Joey Tribbiani</option>
-                                        <option>Phoebe Buffay</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select class="select-field" style="width: 100px; font-size: 0.75rem;">
-                                        <option value="not-completed">Not Completed</option>
-                                        <option value="completed">Completed</option>
-                                        <option value="skipped">Skipped</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="package-item active">
+                    <input type="checkbox" checked style="margin-right: 0.75rem;">
+                    <div>
+                        <div class="package-name">TechCorp Affiliate Program</div>
+                        <div class="package-type">Premium</div>
+                    </div>
+                </div>
+                
+                <div class="package-item">
+                    <input type="checkbox" style="margin-right: 0.75rem;">
+                    <div>
+                        <div class="package-name">H&M</div>
+                        <div class="package-type">Core</div>
+                    </div>
+                </div>
+                
+                <div class="package-item">
+                    <input type="checkbox" style="margin-right: 0.75rem;">
+                    <div>
+                        <div class="package-name">Italian Furniture</div>
+                        <div class="package-type">Premium</div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Right Section: Tabs -->
+        <!-- Middle Section: Main Content with Tabs -->
+        <div class="left-section">
+            <div class="tabs-container">
+                <div class="tabs-nav">
+                    <button class="tab-button active" data-tab="services">Services (10+)</button>
+                    <button class="tab-button" data-tab="tasks">Tasks</button>
+                </div>
+
+                <!-- Services Tab -->
+                <div id="services-tab" class="tab-content active">
+                    <div style="padding: 1.5rem;">
+                        <div style="color: #706E6B; font-size: 0.875rem; margin-bottom: 1rem;">10+ items • Updated a few seconds ago</div>
+                        
+                        <div class="table-container">
+                            <table class="service-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%;">#</th>
+                                        <th style="width: 25%;">Service Name</th>
+                                        <th style="width: 15%;">Frequency</th>
+                                        <th style="width: 15%;">Occurrence</th>
+                                        <th style="width: 15%;">Reference Date</th>
+                                        <th style="width: 20%;">Included for Client</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="task-row">
+                                        <td>1</td>
+                                        <td><div class="service-name" style="cursor: default; text-decoration: none; color: #181818;">1 hour regular call with Account Contact</div></td>
+                                        <td>Weekly</td>
+                                        <td>Upon Request</td>
+                                        <td>2025-06-05</td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                    </tr>
+                                    <tr class="task-row">
+                                        <td>2</td>
+                                        <td><div class="service-name" style="cursor: default; text-decoration: none; color: #181818;">Business Review</div></td>
+                                        <td>Quarterly</td>
+                                        <td>Included</td>
+                                        <td>2025-06-05</td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                    </tr>
+                                    <tr class="task-row">
+                                        <td>3</td>
+                                        <td><div class="service-name" style="cursor: default; text-decoration: none; color: #181818;">Competitor Benchmark</div></td>
+                                        <td>Quarterly</td>
+                                        <td>Included</td>
+                                        <td>2025-06-05</td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                    </tr>
+                                    <tr class="task-row">
+                                        <td>4</td>
+                                        <td><div class="service-name" style="cursor: default; text-decoration: none; color: #181818;">Gap Analysis</div></td>
+                                        <td>Quarterly</td>
+                                        <td>Included</td>
+                                        <td>2025-06-05</td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                    </tr>
+                                    <tr class="task-row">
+                                        <td>5</td>
+                                        <td><div class="service-name" style="cursor: default; text-decoration: none; color: #181818;">Industry and Network Insight</div></td>
+                                        <td>Quarterly</td>
+                                        <td>Included</td>
+                                        <td>2025-06-05</td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                    </tr>
+                                    <tr class="task-row">
+                                        <td>6</td>
+                                        <td><div class="service-name" style="cursor: default; text-decoration: none; color: #181818;">Publisher Approvals</div></td>
+                                        <td>Weekly</td>
+                                        <td>Included</td>
+                                        <td>2025-06-05</td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                    </tr>
+                                    <tr class="task-row">
+                                        <td>7</td>
+                                        <td><div class="service-name" style="cursor: default; text-decoration: none; color: #181818;">Publisher Recommendations</div></td>
+                                        <td>Monthly</td>
+                                        <td>Included</td>
+                                        <td>2025-06-05</td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                    </tr>
+                                    <tr class="task-row">
+                                        <td>8</td>
+                                        <td><div class="service-name" style="cursor: default; text-decoration: none; color: #181818;">Reporting and Analysis</div></td>
+                                        <td>Weekly</td>
+                                        <td>Upon Request</td>
+                                        <td>2025-06-05</td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                    </tr>
+                                    <tr class="task-row">
+                                        <td>9</td>
+                                        <td><div class="service-name" style="cursor: default; text-decoration: none; color: #181818;">Review of Strategy Roadmaps</div></td>
+                                        <td>Monthly</td>
+                                        <td>Included</td>
+                                        <td>2025-06-05</td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                    </tr>
+                                    <tr class="task-row">
+                                        <td>10</td>
+                                        <td><div class="service-name" style="cursor: default; text-decoration: none; color: #181818;">Strategy Planning and Delivery Call / Meeting</div></td>
+                                        <td>Quarterly</td>
+                                        <td>Included</td>
+                                        <td>2025-06-05</td>
+                                        <td><label style="display: flex; align-items: center; font-size: 0.875rem; cursor: pointer;"><input type="checkbox" checked style="margin-right: 0.5rem;">Yes</label></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="text-align: center; margin-top: 1rem;">
+                            <a href="#" style="color: #0176D3; text-decoration: underline; font-size: 0.875rem;">View All</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tasks Tab -->
+                <div id="tasks-tab" class="tab-content">
+                    <div class="container" style="box-shadow: none; border-radius: 0;">
+                        <div class="header">
+                            <h1>Tasks</h1>
+                            <button class="btn btn-primary" id="addTaskBtn">+ Add Task</button>
+                        </div>
+                        
+                        <div class="table-container">
+                            <table class="service-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-service">Service Name</th>
+                                        <th class="col-date">Due Date</th>
+                                        <th class="col-assigned">Assigned To</th>
+                                        <th class="col-status">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="task-row">
+                                        <td><div class="service-name" onclick="openTaskDetail('Performance Reviews', 'Monthly analysis of campaign performance and optimization recommendations', 'Optimization', '2025-06-15', 'Chandler Bing', 'Pending client feedback on Q1 performance metrics', 'not-completed')">Performance Reviews</div></td>
+                                        <td><div style="color: #181818; font-size: 0.875rem;">2025-06-15</div></td>
+                                        <td><div style="color: #181818; font-size: 0.875rem;">Chandler Bing</div></td>
+                                        <td><div style="color: #181818; font-size: 0.875rem;">Not Completed</div></td>
+                                    </tr>
+                                    <tr class="task-row">
+                                        <td><div class="service-name" onclick="openTaskDetail('Publisher Recommendations', 'Monthly publisher outreach and partnership recommendations', 'Publisher Management', '2025-06-20', 'Chandler Bing', 'Research in progress for new tech publishers', 'not-completed')">Publisher Recommendations</div></td>
+                                        <td><div style="color: #181818; font-size: 0.875rem;">2025-06-20</div></td>
+                                        <td><div style="color: #181818; font-size: 0.875rem;">Chandler Bing</div></td>
+                                        <td><div style="color: #181818; font-size: 0.875rem;">Not Completed</div></td>
+                                    </tr>
+                                    <tr class="task-row">
+                                        <td><div class="service-name" onclick="openTaskDetail('Monthly Check-ins', 'Regular client calls to discuss performance and strategy', 'Communication', '2025-06-10', 'Chandler Bing', 'Call went well, client satisfied with current performance', 'completed')">Monthly Check-ins</div></td>
+                                        <td><div style="color: #181818; font-size: 0.875rem;">2025-06-10</div></td>
+                                        <td><div style="color: #181818; font-size: 0.875rem;">Chandler Bing</div></td>
+                                        <td><div style="color: #04844B; font-size: 0.875rem; font-weight: 600;">Completed</div></td>
+                                    </tr>
+                                    <tr class="task-row">
+                                        <td><div class="service-name" onclick="openTaskDetail('Account Maintenance', 'Regular account cleanup and maintenance tasks', 'Housekeeping', '2025-06-25', 'Chandler Bing', 'Scheduled for next week - cleanup inactive publishers', 'not-completed')">Account Maintenance</div></td>
+                                        <td><div style="color: #181818; font-size: 0.875rem;">2025-06-25</div></td>
+                                        <td><div style="color: #181818; font-size: 0.875rem;">Chandler Bing</div></td>
+                                        <td><div style="color: #181818; font-size: 0.875rem;">Not Completed</div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Section: Program Information with Tabs -->
         <div class="right-section">
             <div class="tabs-container">
                 <div class="tabs-nav">
                     <button class="tab-button active" data-tab="program">Program</button>
+                    <button class="tab-button" data-tab="package">SLA Board Info</button>
                     <button class="tab-button" data-tab="contacts">Contact Roles</button>
                 </div>
 
                 <!-- Program Information Tab -->
                 <div id="program-tab" class="tab-content active">
-                    <div class="info-section">
-                        <div class="info-label">Program</div>
-                        <div class="info-value link">TechCorp Affiliate Program</div>
+                    <div style="padding: 1.5rem;">
+                        <div class="info-section">
+                            <div class="info-label">Program</div>
+                            <div class="info-value link">TechCorp Affiliate Program</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">Package</div>
+                            <div class="info-value">Premium</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">Status</div>
+                            <div class="info-value status">Active</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">Account Manager</div>
+                            <div class="info-value">Chandler Bing</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">Awin ID</div>
+                            <div class="info-value">12345</div>
+                        </div>
                     </div>
-                    <div class="info-section">
-                        <div class="info-label">Package</div>
-                        <div class="info-value">Premium</div>
-                    </div>
-                    <div class="info-section">
-                        <div class="info-label">Status</div>
-                        <div class="info-value status">Active</div>
-                    </div>
-                    <div class="info-section">
-                        <div class="info-label">Account Manager</div>
-                        <div class="info-value">Chandler Bing</div>
-                    </div>
-                    <div class="info-section">
-                        <div class="info-label">Awin ID</div>
-                        <div class="info-value">12345</div>
+                </div>
+
+                <!-- Package Info Tab -->
+                <div id="package-tab" class="tab-content">
+                    <div style="padding: 1.5rem;">
+                        <div class="info-section">
+                            <div class="info-label">Package Number</div>
+                            <div class="info-value">PKG-2025-001234</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">Package Type</div>
+                            <div class="info-value">Premium</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">Package Owner</div>
+                            <select style="width: 180px; padding: 0.375rem; border: 1px solid #D8D8D8; border-radius: 4px; font-size: 0.75rem; background: white;">
+                                <option selected>Chandler Bing</option>
+                                <option>Monica Geller</option>
+                                <option>Ross Geller</option>
+                                <option>Rachel Green</option>
+                                <option>Joey Tribbiani</option>
+                                <option>Phoebe Buffay</option>
+                            </select>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">Created Date</div>
+                            <div class="info-value">June 5, 2025</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">Last Modified</div>
+                            <div class="info-value">June 25, 2025</div>
+                        </div>
+                        <div class="info-section">
+                            <div class="info-label">Total Services</div>
+                            <div class="info-value">10</div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Contact Roles Tab -->
                 <div id="contacts-tab" class="tab-content">
-                    <div class="contact-card">
-                        <div class="contact-name">John Smith</div>
-                        <div class="contact-detail">
-                            <span class="contact-detail-label">Email:</span>
-                            <span class="contact-detail-value email">john.smith@test.com</span>
+                    <div style="padding: 1.5rem;">
+                        <div class="contact-card">
+                            <div class="contact-name">John Smith</div>
+                            <div class="contact-detail">
+                                <span class="contact-detail-label">Email:</span>
+                                <span class="contact-detail-value email">john.smith@test.com</span>
+                            </div>
+                            <div class="contact-detail">
+                                <span class="contact-detail-label">Role:</span>
+                                <span class="contact-detail-value">Business (Other)</span>
+                            </div>
+                            <div class="contact-detail">
+                                <span class="contact-detail-label">Survey Recipient:</span>
+                                <span class="contact-detail-value">No</span>
+                            </div>
                         </div>
-                        <div class="contact-detail">
-                            <span class="contact-detail-label">Role:</span>
-                            <span class="contact-detail-value">Business (Other)</span>
-                        </div>
-                        <div class="contact-detail">
-                            <span class="contact-detail-label">Survey Recipient:</span>
-                            <span class="contact-detail-value">No</span>
-                        </div>
-                    </div>
 
-                    <div class="contact-card">
-                        <div class="contact-name">Alex Johnson</div>
-                        <div class="contact-detail">
-                            <span class="contact-detail-label">Email:</span>
-                            <span class="contact-detail-value email">alex.johnson@test2.com</span>
-                        </div>
-                        <div class="contact-detail">
-                            <span class="contact-detail-label">Role:</span>
-                            <span class="contact-detail-value">Business (Other)</span>
-                        </div>
-                        <div class="contact-detail">
-                            <span class="contact-detail-label">Survey Recipient:</span>
-                            <span class="contact-detail-value survey-yes">Yes</span>
+                        <div class="contact-card">
+                            <div class="contact-name">Alex Johnson</div>
+                            <div class="contact-detail">
+                                <span class="contact-detail-label">Email:</span>
+                                <span class="contact-detail-value email">alex.johnson@test2.com</span>
+                            </div>
+                            <div class="contact-detail">
+                                <span class="contact-detail-label">Role:</span>
+                                <span class="contact-detail-value">Business (Other)</span>
+                            </div>
+                            <div class="contact-detail">
+                                <span class="contact-detail-label">Survey Recipient:</span>
+                                <span class="contact-detail-value survey-yes">Yes</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -798,6 +853,14 @@
             <div class="modal-body">
                 <div class="detail-grid">
                     <div class="detail-field">
+                        <label class="detail-label">Program Name</label>
+                        <input type="text" id="taskDetailProgram" class="detail-input" value="TechCorp Affiliate Program" readonly>
+                    </div>
+                    <div class="detail-field">
+                        <label class="detail-label">Package</label>
+                        <input type="text" id="taskDetailPackage" class="detail-input" value="Premium" readonly>
+                    </div>
+                    <div class="detail-field">
                         <label class="detail-label">Service Name</label>
                         <input type="text" id="taskDetailName" class="detail-input" readonly>
                     </div>
@@ -806,7 +869,7 @@
                         <input type="text" id="taskDetailCategory" class="detail-input" readonly>
                     </div>
                     <div class="detail-field full-width">
-                        <label class="detail-label">Description</label>
+                        <label class="detail-label">Service Description</label>
                         <textarea id="taskDetailDescription" class="detail-textarea" readonly></textarea>
                     </div>
                     <div class="detail-field">
@@ -822,6 +885,14 @@
                             <option>Rachel Green</option>
                             <option>Joey Tribbiani</option>
                             <option>Phoebe Buffay</option>
+                        </select>
+                    </div>
+                    <div class="detail-field">
+                        <label class="detail-label">Status</label>
+                        <select id="taskDetailStatus" class="detail-select">
+                            <option value="not-completed">Not Completed</option>
+                            <option value="completed">Completed</option>
+                            <option value="skipped">Skipped</option>
                         </select>
                     </div>
                     <div class="detail-field full-width">
@@ -849,11 +920,15 @@
                     <label for="serviceSelect" class="form-label">Select Service</label>
                     <select id="serviceSelect" class="form-select">
                         <option value="">Choose a service...</option>
-                        <option value="performance-reviews">Performance Reviews - Optimization (Occurrence: Included, Included: Yes)</option>
-                        <option value="publisher-recommendations">Publisher Recommendations - Publisher Management (Occurrence: Included, Included: Yes)</option>
-                        <option value="monthly-checkins">Monthly Check-ins - Communication (Occurrence: Included, Included: Yes)</option>
-                        <option value="account-maintenance">Account Maintenance - Housekeeping (Occurrence: Included, Included: Yes)</option>
-                        <option value="social-media-audit">Custom: Social Media Audit - Other (Occurrence: Upon Request, Included: Yes)</option>
+                        <option value="gap-analysis">Gap Analysis - Quarterly (Occurrence: Included, Included: Yes)</option>
+                        <option value="industry-network-insight">Industry and Network Insight - Quarterly (Occurrence: Included, Included: Yes)</option>
+                        <option value="1h-regular-call">1 hour regular call with Account Contact - Weekly (Occurrence: Upon Request, Included: Yes)</option>
+                        <option value="business-review">Business Review - Quarterly (Occurrence: Included, Included: Yes)</option>
+                        <option value="competitor-benchmark">Competitor Benchmark - Quarterly (Occurrence: Included, Included: Yes)</option>
+                        <option value="publisher-approvals">Publisher Approvals - Weekly (Occurrence: Included, Included: Yes)</option>
+                        <option value="reporting-analysis">Reporting and Analysis - Weekly (Occurrence: Upon Request, Included: Yes)</option>
+                        <option value="strategy-roadmaps">Review of Strategy Roadmaps - Monthly (Occurrence: Included, Included: Yes)</option>
+                        <option value="strategy-planning">Strategy Planning and Delivery Call / Meeting - Quarterly (Occurrence: Included, Included: Yes)</option>
                         <option value="other-tasks">Other Tasks - Other (Ad-hoc requests)</option>
                     </select>
                 </div>
@@ -906,20 +981,40 @@
         document.addEventListener('DOMContentLoaded', function() {
             initializeTabs();
             initializeModals();
+            initializeAddTask();
         });
 
         // Tab functionality
         function initializeTabs() {
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const tabContents = document.querySelectorAll('.tab-content');
+            // Main content tabs (Services/Tasks) - Left side
+            const leftTabButtons = document.querySelectorAll('.left-section .tabs-nav .tab-button');
+            const leftTabContents = document.querySelectorAll('.left-section .tab-content');
 
-            tabButtons.forEach(button => {
+            leftTabButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const targetTab = this.getAttribute('data-tab');
                     
-                    // Remove active class from all buttons and contents
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
+                    // Remove active class from left tab buttons and contents
+                    leftTabButtons.forEach(btn => btn.classList.remove('active'));
+                    leftTabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(targetTab + '-tab').classList.add('active');
+                });
+            });
+
+            // Right sidebar tabs (Program/Package Info/Contact Roles)
+            const rightTabButtons = document.querySelectorAll('.right-section .tabs-nav .tab-button');
+            const rightTabContents = document.querySelectorAll('.right-section .tab-content');
+
+            rightTabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Remove active class from right tab buttons and contents
+                    rightTabButtons.forEach(btn => btn.classList.remove('active'));
+                    rightTabContents.forEach(content => content.classList.remove('active'));
                     
                     // Add active class to clicked button and corresponding content
                     this.classList.add('active');
@@ -1004,6 +1099,8 @@
 
             // Populate the modal fields
             document.getElementById('taskDetailTitle').textContent = name;
+            document.getElementById('taskDetailProgram').value = 'TechCorp Affiliate Program';
+            document.getElementById('taskDetailPackage').value = 'Premium';
             document.getElementById('taskDetailName').value = name;
             document.getElementById('taskDetailDescription').value = description;
             document.getElementById('taskDetailCategory').value = category;
@@ -1014,6 +1111,12 @@
             const assignedSelect = document.getElementById('taskDetailAssigned');
             if (assignedSelect) {
                 assignedSelect.value = assignedTo;
+            }
+
+            // Set the status
+            const statusSelect = document.getElementById('taskDetailStatus');
+            if (statusSelect) {
+                statusSelect.value = status;
             }
 
             // Show the modal
@@ -1028,13 +1131,59 @@
                 category: document.getElementById('taskDetailCategory').value,
                 dueDate: document.getElementById('taskDetailDueDate').value,
                 assignedTo: document.getElementById('taskDetailAssigned').value,
-                notes: document.getElementById('taskDetailNotes').value
+                notes: document.getElementById('taskDetailNotes').value,
+                status: document.getElementById('taskDetailStatus').value
             };
 
-            // In a real application, you would save this data to a server
-            console.log('Saving task details:', updatedData);
+            // Find the task row in the table and update it
+            const serviceNameElements = document.querySelectorAll('.service-name');
+            let targetRow = null;
             
-            // Show success message (you could implement a toast notification here)
+            serviceNameElements.forEach(element => {
+                if (element.textContent.trim() === currentTaskData.name) {
+                    targetRow = element.closest('tr');
+                }
+            });
+
+            if (targetRow) {
+                // Update the row cells
+                const cells = targetRow.querySelectorAll('td');
+                
+                // Update due date (2nd cell)
+                cells[1].innerHTML = `<div style="color: #181818; font-size: 0.875rem;">${updatedData.dueDate}</div>`;
+                
+                // Update assigned to (3rd cell)
+                cells[2].innerHTML = `<div style="color: #181818; font-size: 0.875rem;">${updatedData.assignedTo}</div>`;
+                
+                // Update status (4th cell) with appropriate styling
+                let statusColor = '#181818';
+                let statusWeight = 'normal';
+                if (updatedData.status === 'completed') {
+                    statusColor = '#04844B';
+                    statusWeight = '600';
+                } else if (updatedData.status === 'skipped') {
+                    statusColor = '#FF6B35';
+                    statusWeight = '600';
+                }
+                
+                const statusText = updatedData.status === 'not-completed' ? 'Not Completed' : 
+                                 updatedData.status === 'completed' ? 'Completed' : 'Skipped';
+                
+                cells[3].innerHTML = `<div style="color: ${statusColor}; font-size: 0.875rem; font-weight: ${statusWeight};">${statusText}</div>`;
+                
+                // Update the onclick handler with new data
+                const serviceNameElement = cells[0].querySelector('.service-name');
+                if (serviceNameElement) {
+                    serviceNameElement.setAttribute('onclick', 
+                        `openTaskDetail('${updatedData.name}', '${updatedData.description}', '${updatedData.category}', '${updatedData.dueDate}', '${updatedData.assignedTo}', '${updatedData.notes}', '${updatedData.status}')`
+                    );
+                }
+            }
+
+            // Update the current task data
+            currentTaskData = updatedData;
+
+            // Show success message
             alert('Task details saved successfully!');
             
             // Close the modal
@@ -1118,7 +1267,7 @@
             }
 
             // Create the new row
-            const tableBody = document.querySelector('.service-table tbody');
+            const tableBody = document.querySelector('#tasks-tab .service-table tbody');
             const newRow = document.createElement('tr');
             newRow.className = 'task-row';
 
@@ -1132,30 +1281,13 @@
             newRow.innerHTML = `
                 <td>${taskNameHtml}</td>
                 <td>
-                    <div class="service-description">${taskData.description}</div>
+                    <div style="color: #181818; font-size: 0.875rem;">${taskDueDate.value}</div>
                 </td>
                 <td>
-                    <div class="category">${taskData.category}</div>
+                    <div style="color: #181818; font-size: 0.875rem;">${assignedTo.value}</div>
                 </td>
                 <td>
-                    <input type="date" class="date-field" value="${taskDueDate.value}">
-                </td>
-                <td>
-                    <select class="select-field">
-                        <option ${assignedTo.value === 'Chandler Bing' ? 'selected' : ''}>Chandler Bing</option>
-                        <option ${assignedTo.value === 'Monica Geller' ? 'selected' : ''}>Monica Geller</option>
-                        <option ${assignedTo.value === 'Ross Geller' ? 'selected' : ''}>Ross Geller</option>
-                        <option ${assignedTo.value === 'Rachel Green' ? 'selected' : ''}>Rachel Green</option>
-                        <option ${assignedTo.value === 'Joey Tribbiani' ? 'selected' : ''}>Joey Tribbiani</option>
-                        <option ${assignedTo.value === 'Phoebe Buffay' ? 'selected' : ''}>Phoebe Buffay</option>
-                    </select>
-                </td>
-                <td>
-                    <select class="select-field" style="width: 100px; font-size: 0.75rem;">
-                        <option value="not-completed">Not Completed</option>
-                        <option value="completed">Completed</option>
-                        <option value="skipped">Skipped</option>
-                    </select>
+                    <div style="color: #181818; font-size: 0.875rem;">Not Completed</div>
                 </td>
             `;
 
@@ -1173,30 +1305,50 @@
         // Get service data based on selection
         function getServiceData(serviceValue) {
             const serviceMap = {
-                'performance-reviews': {
-                    name: 'Performance Reviews',
-                    description: 'Monthly analysis of campaign performance and optimization recommendations',
-                    category: 'Optimization'
+                'gap-analysis': {
+                    name: 'Gap Analysis',
+                    description: 'Identify gaps in program performance and provide recommendations for improvement',
+                    category: 'Analysis'
                 },
-                'publisher-recommendations': {
-                    name: 'Publisher Recommendations',
-                    description: 'Monthly publisher outreach and partnership recommendations',
-                    category: 'Publisher Management'
+                'industry-network-insight': {
+                    name: 'Industry and Network Insight',
+                    description: 'Quarterly industry trends and network insights to inform strategy',
+                    category: 'Strategic Planning'
                 },
-                'monthly-checkins': {
-                    name: 'Monthly Check-ins',
-                    description: 'Regular client calls to discuss performance and strategy',
+                '1h-regular-call': {
+                    name: '1 hour regular call with Account Contact',
+                    description: 'Regular client communication call to discuss performance and updates',
                     category: 'Communication'
                 },
-                'account-maintenance': {
-                    name: 'Account Maintenance',
-                    description: 'Regular account cleanup and maintenance tasks',
-                    category: 'Housekeeping'
+                'business-review': {
+                    name: 'Business Review',
+                    description: 'Quarterly business performance review and strategic assessment',
+                    category: 'Analysis'
                 },
-                'social-media-audit': {
-                    name: 'Custom: Social Media Audit',
-                    description: 'Quarterly review of social media performance and recommendations',
-                    category: 'Other'
+                'competitor-benchmark': {
+                    name: 'Competitor Benchmark',
+                    description: 'Monthly competitor analysis and benchmarking against industry standards',
+                    category: 'Analysis'
+                },
+                'publisher-approvals': {
+                    name: 'Publisher Approvals',
+                    description: 'Weekly publisher approval process and partner management',
+                    category: 'Publisher Management'
+                },
+                'reporting-analysis': {
+                    name: 'Reporting and Analysis',
+                    description: 'Weekly performance reporting and analysis of key metrics',
+                    category: 'Optimization'
+                },
+                'strategy-roadmaps': {
+                    name: 'Review of Strategy Roadmaps',
+                    description: 'Monthly review of strategic roadmaps and planning initiatives',
+                    category: 'Strategic Planning'
+                },
+                'strategy-planning': {
+                    name: 'Strategy Planning and Delivery Call / Meeting',
+                    description: 'Quarterly strategic planning sessions and delivery discussions',
+                    category: 'Strategic Planning'
                 }
             };
             return serviceMap[serviceValue] || { name: 'Unknown Service', description: '', category: 'Other' };
@@ -1213,12 +1365,11 @@
             document.getElementById('otherTaskFields').style.display = 'none';
         }
 
-        // Update the initialization to include add task functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeTabs();
-            initializeModals();
-            initializeAddTask();
-        });
+        // Open service detail modal (placeholder for now)
+        function openServiceDetail(name, description, frequency, executionType, referenceDate, owner, included) {
+            alert(`Service Details:\nName: ${name}\nDescription: ${description}\nFrequency: ${frequency}\nExecution Type: ${executionType}\nReference Date: ${referenceDate}\nIncluded: ${included ? 'Yes' : 'No'}`);
+        }
     </script>
 </body>
 </html>
+                            
