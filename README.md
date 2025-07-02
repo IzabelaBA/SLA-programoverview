@@ -770,7 +770,7 @@
                 <div id="package-tab" class="tab-content">
                     <div style="padding: 1.5rem;">
                         <div class="info-section">
-                            <div class="info-label">Package Owner</div>
+                            <div class="info-label">SLA Board Owner</div>
                             <select style="width: 180px; padding: 0.375rem; border: 1px solid #D8D8D8; border-radius: 4px; font-size: 0.75rem; background: white;">
                                 <option selected>Chandler Bing</option>
                                 <option>Monica Geller</option>
@@ -870,7 +870,7 @@
                     <div class="detail-field">
                         <label class="detail-label">Status</label>
                         <select id="taskDetailStatus" class="detail-select">
-                            <option value="not-completed">Not Completed</option>
+                            <option value="empty">Empty</option>
                             <option value="completed">Completed</option>
                             <option value="skipped">Skipped</option>
                         </select>
@@ -1143,7 +1143,7 @@
                     statusWeight = '600';
                 }
                 
-                const statusText = updatedData.status === 'not-completed' ? 'Not Completed' : 
+                const statusText = updatedData.status === 'empty' ? 'Empty' : 
                                  updatedData.status === 'completed' ? 'Completed' : 'Skipped';
                 
                 cells[3].innerHTML = `<div style="color: ${statusColor}; font-size: 0.875rem; font-weight: ${statusWeight};">${statusText}</div>`;
@@ -1244,10 +1244,10 @@
 
             const taskNameHtml = taskData.isCustom 
                 ? `<div class="service-name-container">
-                     <div class="service-name" onclick="openTaskDetail('${taskData.name}', '${taskData.description}', '${taskData.category}', '${taskDueDate.value}', '${assignedTo.value}', '${taskNotes.value}', 'not-completed')">${taskData.name}</div>
+                     <div class="service-name" onclick="openTaskDetail('${taskData.name}', '${taskData.description}', '${taskData.category}', '${taskDueDate.value}', '${assignedTo.value}', '${taskNotes.value}', 'empty')">${taskData.name}</div>
                      <button class="remove-btn" onclick="removeTask(this)">Delete</button>
                    </div>`
-                : `<div class="service-name" onclick="openTaskDetail('${taskData.name}', '${taskData.description}', '${taskData.category}', '${taskDueDate.value}', '${assignedTo.value}', '${taskNotes.value}', 'not-completed')">${taskData.name}</div>`;
+                : `<div class="service-name" onclick="openTaskDetail('${taskData.name}', '${taskData.description}', '${taskData.category}', '${taskDueDate.value}', '${assignedTo.value}', '${taskNotes.value}', 'empty')">${taskData.name}</div>`;
 
             newRow.innerHTML = `
                 <td>${taskNameHtml}</td>
@@ -1258,7 +1258,7 @@
                     <div style="color: #181818; font-size: 0.875rem;">${assignedTo.value}</div>
                 </td>
                 <td>
-                    <div style="color: #181818; font-size: 0.875rem;">Not Completed</div>
+                    <div style="color: #181818; font-size: 0.875rem;">Empty</div>
                 </td>
             `;
 
