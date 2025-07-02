@@ -506,7 +506,10 @@
 <body>
     <!-- Program Header -->
     <div class="program-header">
-        <h1 class="program-title">TechCorp Affiliate Program</h1>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1 class="program-title">TechCorp Affiliate Program</h1>
+            <button class="btn btn-primary" id="addTaskBtn">+ Add Task</button>
+        </div>
     </div>
 
     <div class="main-container">
@@ -682,11 +685,8 @@
 
                 <!-- Tasks Tab -->
                 <div id="tasks-tab" class="tab-content">
-                    <div class="container" style="box-shadow: none; border-radius: 0;">
-                        <div class="header">
-                            <h1>Tasks</h1>
-                            <button class="btn btn-primary" id="addTaskBtn">+ Add Task</button>
-                        </div>
+                    <div style="padding: 1.5rem;">
+                        <h1 style="font-size: 1.25rem; font-weight: 600; color: #181818; margin: 0 0 1rem 0;">Tasks</h1>
                         
                         <div class="table-container">
                             <table class="service-table">
@@ -700,16 +700,16 @@
                                 </thead>
                                 <tbody>
                                     <tr class="task-row">
-                                        <td><div class="service-name" onclick="openTaskDetail('Performance Reviews', 'Monthly analysis of campaign performance and optimization recommendations', 'Optimization', '2025-06-15', 'Chandler Bing', 'Pending client feedback on Q1 performance metrics', 'not-completed')">Performance Reviews</div></td>
+                                        <td><div class="service-name" onclick="openTaskDetail('Performance Reviews', 'Monthly analysis of campaign performance and optimization recommendations', 'Optimization', '2025-06-15', 'Chandler Bing', 'Pending client feedback on Q1 performance metrics', 'empty')">Performance Reviews</div></td>
                                         <td><div style="color: #181818; font-size: 0.875rem;">2025-06-15</div></td>
                                         <td><div style="color: #181818; font-size: 0.875rem;">Chandler Bing</div></td>
-                                        <td><div style="color: #181818; font-size: 0.875rem;">Not Completed</div></td>
+                                        <td><div style="color: #181818; font-size: 0.875rem;">Empty</div></td>
                                     </tr>
                                     <tr class="task-row">
-                                        <td><div class="service-name" onclick="openTaskDetail('Publisher Recommendations', 'Monthly publisher outreach and partnership recommendations', 'Publisher Management', '2025-06-20', 'Chandler Bing', 'Research in progress for new tech publishers', 'not-completed')">Publisher Recommendations</div></td>
+                                        <td><div class="service-name" onclick="openTaskDetail('Publisher Recommendations', 'Monthly publisher outreach and partnership recommendations', 'Publisher Management', '2025-06-20', 'Chandler Bing', 'Research in progress for new tech publishers', 'empty')">Publisher Recommendations</div></td>
                                         <td><div style="color: #181818; font-size: 0.875rem;">2025-06-20</div></td>
                                         <td><div style="color: #181818; font-size: 0.875rem;">Chandler Bing</div></td>
-                                        <td><div style="color: #181818; font-size: 0.875rem;">Not Completed</div></td>
+                                        <td><div style="color: #181818; font-size: 0.875rem;">Empty</div></td>
                                     </tr>
                                     <tr class="task-row">
                                         <td><div class="service-name" onclick="openTaskDetail('Monthly Check-ins', 'Regular client calls to discuss performance and strategy', 'Communication', '2025-06-10', 'Chandler Bing', 'Call went well, client satisfied with current performance', 'completed')">Monthly Check-ins</div></td>
@@ -718,10 +718,10 @@
                                         <td><div style="color: #04844B; font-size: 0.875rem; font-weight: 600;">Completed</div></td>
                                     </tr>
                                     <tr class="task-row">
-                                        <td><div class="service-name" onclick="openTaskDetail('Account Maintenance', 'Regular account cleanup and maintenance tasks', 'Housekeeping', '2025-06-25', 'Chandler Bing', 'Scheduled for next week - cleanup inactive publishers', 'not-completed')">Account Maintenance</div></td>
+                                        <td><div class="service-name" onclick="openTaskDetail('Account Maintenance', 'Regular account cleanup and maintenance tasks', 'Housekeeping', '2025-06-25', 'Chandler Bing', 'Scheduled for next week - cleanup inactive publishers', 'empty')">Account Maintenance</div></td>
                                         <td><div style="color: #181818; font-size: 0.875rem;">2025-06-25</div></td>
                                         <td><div style="color: #181818; font-size: 0.875rem;">Chandler Bing</div></td>
-                                        <td><div style="color: #181818; font-size: 0.875rem;">Not Completed</div></td>
+                                        <td><div style="color: #181818; font-size: 0.875rem;">Empty</div></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -766,17 +766,9 @@
                     </div>
                 </div>
 
-                <!-- Package Info Tab -->
+                <!-- SLA Board Info Tab -->
                 <div id="package-tab" class="tab-content">
                     <div style="padding: 1.5rem;">
-                        <div class="info-section">
-                            <div class="info-label">Package Number</div>
-                            <div class="info-value">PKG-2025-001234</div>
-                        </div>
-                        <div class="info-section">
-                            <div class="info-label">Package Type</div>
-                            <div class="info-value">Premium</div>
-                        </div>
                         <div class="info-section">
                             <div class="info-label">Package Owner</div>
                             <select style="width: 180px; padding: 0.375rem; border: 1px solid #D8D8D8; border-radius: 4px; font-size: 0.75rem; background: white;">
@@ -787,18 +779,6 @@
                                 <option>Joey Tribbiani</option>
                                 <option>Phoebe Buffay</option>
                             </select>
-                        </div>
-                        <div class="info-section">
-                            <div class="info-label">Created Date</div>
-                            <div class="info-value">June 5, 2025</div>
-                        </div>
-                        <div class="info-section">
-                            <div class="info-label">Last Modified</div>
-                            <div class="info-value">June 25, 2025</div>
-                        </div>
-                        <div class="info-section">
-                            <div class="info-label">Total Services</div>
-                            <div class="info-value">10</div>
                         </div>
                     </div>
                 </div>
@@ -933,16 +913,13 @@
                     </select>
                 </div>
 
-                <!-- Additional fields for Other Tasks (initially hidden) -->
-                <div id="otherTaskFields" style="display: none;">
-                    <div class="form-group">
-                        <label for="taskTitle" class="form-label">Task Title</label>
-                        <input type="text" id="taskTitle" class="form-select" placeholder="e.g., Create Black Friday landing page">
-                    </div>
-                    <div class="form-group">
-                        <label for="taskDescription" class="form-label">Task Description</label>
-                        <textarea id="taskDescription" class="form-select" rows="3" placeholder="Describe what needs to be done and any specific requirements..."></textarea>
-                    </div>
+                <div class="form-group">
+                    <label for="taskTitle" class="form-label">Task Title</label>
+                    <input type="text" id="taskTitle" class="form-select" placeholder="Enter custom task title or modify the service name...">
+                </div>
+                <div class="form-group">
+                    <label for="taskDescription" class="form-label">Task Description</label>
+                    <textarea id="taskDescription" class="form-select" rows="3" placeholder="Enter custom description or modify the service description..."></textarea>
                 </div>
 
                 <div class="form-group">
@@ -1204,15 +1181,22 @@
         function initializeAddTask() {
             const createTaskBtn = document.getElementById('createTaskBtn');
             const serviceSelect = document.getElementById('serviceSelect');
-            const otherTaskFields = document.getElementById('otherTaskFields');
 
-            // Show/hide other task fields based on selection
+            // Populate task title and description when service is selected
             if (serviceSelect) {
                 serviceSelect.addEventListener('change', function() {
-                    if (this.value === 'other-tasks') {
-                        otherTaskFields.style.display = 'block';
-                    } else {
-                        otherTaskFields.style.display = 'none';
+                    const taskTitle = document.getElementById('taskTitle');
+                    const taskDescription = document.getElementById('taskDescription');
+                    
+                    if (this.value && this.value !== 'other-tasks') {
+                        // Populate with service data but allow editing
+                        const serviceData = getServiceData(this.value);
+                        taskTitle.value = serviceData.name;
+                        taskDescription.value = serviceData.description;
+                    } else if (this.value === 'other-tasks') {
+                        // Clear fields for custom tasks
+                        taskTitle.value = '';
+                        taskDescription.value = '';
                     }
                 });
             }
@@ -1240,31 +1224,18 @@
                 return;
             }
 
-            // Get task data based on selection
-            let taskData = {};
-            
-            if (serviceSelect.value === 'other-tasks') {
-                // Custom task
-                if (!taskTitle.value.trim()) {
-                    alert('Please enter a task title');
-                    return;
-                }
-                taskData = {
-                    name: taskTitle.value.trim(),
-                    description: taskDescription.value.trim() || 'Custom task - no description provided',
-                    category: 'Other',
-                    isCustom: true
-                };
-            } else {
-                // Predefined service
-                const serviceData = getServiceData(serviceSelect.value);
-                taskData = {
-                    name: serviceData.name,
-                    description: serviceData.description,
-                    category: serviceData.category,
-                    isCustom: false
-                };
+            if (!taskTitle.value.trim()) {
+                alert('Please enter a task title');
+                return;
             }
+
+            // Use the values from the form fields
+            const taskData = {
+                name: taskTitle.value.trim(),
+                description: taskDescription.value.trim() || 'No description provided',
+                category: serviceSelect.value === 'other-tasks' ? 'Other' : getServiceData(serviceSelect.value).category,
+                isCustom: serviceSelect.value === 'other-tasks'
+            };
 
             // Create the new row
             const tableBody = document.querySelector('#tasks-tab .service-table tbody');
@@ -1362,7 +1333,6 @@
             document.getElementById('assignedTo').selectedIndex = 0;
             document.getElementById('taskDueDate').value = '2025-06-30';
             document.getElementById('taskNotes').value = '';
-            document.getElementById('otherTaskFields').style.display = 'none';
         }
 
         // Open service detail modal (placeholder for now)
